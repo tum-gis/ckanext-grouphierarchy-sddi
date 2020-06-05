@@ -1,0 +1,75 @@
+
+{#
+Display a hierarchical tree of organizations
+
+
+Example:
+
+    {% snippet "group/snippets/group_list.html" %}
+
+
+
+<div>
+
+     {% if  c.q %}
+     	{% set top_nodes = h.group_tree_highlight_g(organizations, h.group_tree_g(type_='group')) %}
+     {% else %}
+     	{% set top_nodes = h.group_tree_g(organizations=organizations, type_='group') %}
+     {% endif %}
+
+     {% snippet 'group/snippets/group_tree_info.html', top_nodes=top_nodes, group=groups, use_longnames=True%}
+</div>
+
+#}
+
+
+  <div class="box" style="background-color:#0065bd;">
+        <center><h2 style="color: white; border: 10px" >{% trans %}Hauptkategorien{% endtrans %}</h2></center>
+        
+{% block group_list %}
+<ul class="media-grid" data-module="media-grid">
+	{% block group_list_inner %}
+
+{% for group in h.get_allowable_children_groups_g('main-categories')  %}
+ {% snippet "group/snippets/group_tree.html", group=group, position=loop.index %}
+          {% endfor %}
+            {% endblock %}
+</ul>
+{% endblock %}
+
+</div>
+
+  <div class="box" style="background-color:#0065bd;">
+        <center><h2 style="color: white; border: 10px" >{% trans %}Landwirtschaftliche Forschungsstationen{% endtrans %}</h2></center>
+        
+{% block group_list2 %}
+<ul class="media-grid" data-module="media-grid">
+	{% block group_list_inner2 %}
+
+{% for group in h.get_allowable_children_groups_g('agricultural-research-stations')  %}
+ {% snippet "group/snippets/group_tree.html", group=group, position=loop.index %}
+          {% endfor %}
+            {% endblock %}
+</ul>
+{% endblock %}
+
+</div>
+
+
+  <div class="box" style="background-color:#0065bd;">
+        <center><h2 style="color: white; border: 10px" >{% trans %}Themen{% endtrans %}</h2></center>
+        
+{% block group_list3 %}
+<ul class="media-grid" data-module="media-grid">
+	{% block group_list_inner3 %}
+
+{% for group in h.get_allowable_children_groups_g('themes')  %}
+ {% snippet "group/snippets/group_tree.html", group=group, position=loop.index %}
+          {% endfor %}
+            {% endblock %}
+</ul>
+{% endblock %}
+
+</div>
+
+

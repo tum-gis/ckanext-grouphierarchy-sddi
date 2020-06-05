@@ -1,0 +1,3 @@
+recursive-include    ckanext/hierarchy_g/public     *
+recursive-include    ckanext/hierarchy_g/templates  *
+recursive-include    ckanext/hierarchy_g/fanstatic  *

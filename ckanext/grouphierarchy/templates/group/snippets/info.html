@@ -1,0 +1,23 @@
+{% ckan_extends %}
+
+{% block heading %}
+    <h1 class="heading">
+        {% if group.longname %}
+           {{ group.longname }} ({{ group.title or group.name }})
+        {% else %}
+            {{ group.title or group.name }}
+        {% endif %}
+        {% if group.state == 'deleted' %}
+          [{{ _('Deleted') }}]
+        {% endif %}
+    </h1>
+{% endblock %}
+
+
+{% block description %}
+    {{ super() }}
+    {% if c.group_dict %} 
+        <hr>
+        {% snippet 'group/snippets/group_tree_info.html', top_nodes=[h.group_tree_section_g(id_=c.group_dict.id, type_=c.group_dict.type)], use_shortnames=True %}
+    {% endif %}
+{% endblock %}

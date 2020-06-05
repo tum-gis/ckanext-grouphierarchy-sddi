@@ -1,0 +1,72 @@
+    
+{#
+Displays a tree of organzations
+
+NB This template can be slow because it is recursive and uses link_for. At
+DGU we speeded up display of the tree 10 times (necessary as we have 1000 
+organizations) by replacing this template with a recursive code routine:
+https://github.com/datagovuk/ckanext-dgu/blob/5fb78b354517c2198245bdc9c98fb5d6c82c6bcc/ckanext/dgu/lib/helpers.py#L140 
+
+orgs    - List of organizations
+
+Example:
+
+  {% snippet 'group/snippets/group_tree.html', top_nodes=h.group_tree(type_='group') %}
+
+
+
+<ul class="media-grid">
+  {% for node in top_nodes recursive %}
+    <li class="media-item" id="node_{{ node.name }}">
+      <img src="{{ group.image_url or h.url_for_static('/base/images/placeholder-group.png') }}" alt="{{ node.name }}" class="media-image img-responsive">
+
+      {% if node.highlighted %}
+        <strong>
+      {% endif %}
+      {% link_for node.title, controller='group', action='read', id=node.name %}
+      
+      {% if node.highlighted %}
+        </strong>
+      {% endif %}
+      {% if node.children %}
+        <ul class="media-grid" data-module="media-grid"> {{ loop(node.children) }} 
+         </ul>
+      {% endif %}
+    </li>
+  {% endfor %}
+</ul>
+#}
+
+
+
+
+{% set type = group.type or 'group' %}
+{% set url = h.url_for(type ~ '_read', action='read', id=group.name) %}
+{% block item %}
+<li class="media-item">
+  {% block item_inner %}
+  {% block image %}
+    <img src="{{ group.image_url or h.url_for_static('/base/images/placeholder-group.png') }}" alt="{{ group.title }}" class="media-image img-responsive">
+  {% endblock %}
+  {% block title %}
+    <h3 class="media-heading">{{ group.title }}</h3>
+  {% endblock %}
+  {% block datasets %}
+    {% if group.package_count %}
+      <strong class="count">{{ ungettext('{num} Dataset', '{num} Datasets', group.package_count).format(num=group.package_count) }}</strong>
+    {% elif group.package_count == 0 %}
+      <span class="count">{{ _('0 Datasets') }}</span>
+    {% endif %}
+  {% endblock %}
+  {% block link %}
+  <a href="{{ url }}" title="{{ _('View {name}').format(name=group.title) }}" class="media-view">
+    <span>{{ _('View {name}').format(name=group.title) }}</span>
+  </a>
+  {% endblock %}
+</li>
+{% endblock %}
+{% endblock %}
+{% if position is divisibleby 3 %}
+  <li class="clearfix js-hide"></li>
+{% endif %}
+
