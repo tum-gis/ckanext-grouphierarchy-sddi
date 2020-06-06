@@ -1,21 +1,25 @@
-# ckanext-hierarchy - Organization hierarchy for CKAN
+# ckanext-grouphierarchy - group hierarchy for CKAN
 
-Provides a new field on the organization edit form to select a parent
-organization. This new hierarchical arrangement of organizations is displayed
-using templates in this extension, instead of the usual list. An organization
+Provides a new field on the group edit form to select a parent
+group. This new hierarchical arrangement of groups is displayed
+using templates in this extension, instead of the usual list. An group
 page also displays the section of the tree that it is part of, under the
 'About' tab.
 
 Forms (hierachy_form plugin):
-* /organization/new
-* /organization/edit/{id}
+* /group/new
+* /group/edit/{id}
 
 Templates (hierarchy_display plugin):
-* /organization - now shows the organization hierarchy instead of list
-* /organization/about/{id} - now also shows the relevant part of the hierarchy
+* /group - now shows the group hierarchy instead of list
+* /group/about/{id} - now also shows the relevant part of the hierarchy
+
+Please note that the categories of groups are hard coded.
+github.com/MandanaMoshref/ckanext-grouphierarchy/blob/master/ckanext/grouphierarchy/templates/group/snippets/group_list.html#L33 / L49 / L66
+
 
 Snippets (used by hierarchy_display and ckanext-scheming):
-* /scheming/form_snippets/org_hierarchy.html
+* /scheming/form_snippets/group_hierarchy.html
 
 You can use this extension with CKAN as it is, enabling both plugins. Or if you
 use an extension to customise the form already with an IGroupForm, then you
@@ -30,20 +34,16 @@ For example, you may add next field:
 ```
 {
     "field_name": "not_used",
-    "label": "Parent organization",
+    "label": "Parent group",
     "display_snippet": null,
-    "form_snippet": "org_hierarchy.html",
+    "form_snippet": "group_hierarchy.html",
     "validators": "ignore_missing"
 }
 ```
 
-
-TODO:
-* make the trees prettier with JSTree
-
 ## Compatibility
 
-This extension requires CKAN v2.2 or later. Specifically it uses these changes CKAN: https://github.com/ckan/ckan/pull/1247/files
+This extension has been tested with CKAN v2.8.0 or later. 
 
 ## Installation
 
@@ -51,12 +51,12 @@ Install the extension in your python environment
 ```
 $ . /usr/lib/ckan/default/bin/activate
 (pyenv) $ cd /usr/lib/ckan/default/src
-(pyenv) $ pip install -e "git+https://github.com/datagovuk/ckanext-hierarchy.git#egg=ckanext-hierarchy"
+(pyenv) $ pip install -e "git+https://github.com/MandanaMoshref/ckanext-grouphierarchy.git#egg=ckanext-grouphierarchy"
 ```
-Then change your CKAN ini file (e.g. development.ini or production.ini).  Note that hierarchy_display
-should come before hierarchy_form
+Then change your CKAN ini file (e.g. development.ini or production.ini).  Note that display_group
+should come before form_group
 ```
-ckan.plugins = stats text_view recline_view ... hierarchy_display hierarchy_form
+ckan.plugins = stats text_view recline_view ... display_group form_group
 ```
 
 ## Copyright & Licence
