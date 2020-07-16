@@ -103,12 +103,33 @@ def group_tree_filter_g(organizations, group_tree_list, highlight=False):
     return filtered_tree
 
 
+def get_selected_group (groups, parent_group):
+    '''Return a list of groups selected for a datase.'''
+    
+    group_list = get_allowable_children_groups_g(parent_group)
+    
+    group_name = []
+    for gr in group_list:
+        group_name.append(gr[1])
+    
+    category_gr = []    
+    for name in group_name:
+        for selected_gr in groups:
+            print(selected_gr)
+            if selected_gr['name'] == name:
+               #category_gr.append(selected_gr['title'])
+               category_gr.append(selected_gr)
+
+    return category_gr
+
+
 def group_tree_get_longname_g(id_, default="", type_='groups'):
      tree_node =  tk.get_action('group_show')({},{'id':id_})
      longname = tree_node.get("longname", default)
      if not longname:
          return default
      return longname
+
 
 def group_tree_highlight_g(organizations, group_tree_list):
 

@@ -45,6 +45,7 @@ class HierarchyDisplay(p.SingletonPlugin):
 		        'group_tree_get_longname_g': helpers.group_tree_get_longname_g,
                 'group_tree_highlight_g': helpers.group_tree_highlight_g,
 		        'get_allowable_children_groups_g': helpers.get_allowable_children_groups_g,
+				'get_selected_group': helpers.get_selected_group,
                 }
 
     # IPackageController

@@ -3,8 +3,8 @@
 Provides a new field on the group edit form to select a parent
 group. This new hierarchical arrangement of groups is displayed
 using templates in this extension, instead of the usual list. An group
-page also displays the section of the tree that it is part of, under the
-'About' tab.
+page also displays the section of the tree.
+This version (0.2) of this extension also supports the group labeling on the dataset page and on the search page where the datasets are listed. Please note the labeling is only for the main group [id='main-categories'] including 9 sub-groups/children. 
 
 Forms (hierachy_form plugin):
 * /group/new

@@ -1,0 +1,82 @@
+{#% set marker_strlen = 12 %#}
+{% set pkg = c.pkg_dict %}
+{% set count = h.get_allowable_children_groups_g('main-categories') %}
+{% set main_group = h.get_selected_group(pkg.groups, 'main-categories') %}
+{#% set themes = h.get_selected_group(pkg.groups, 'themes') %}
+{% set research_station = h.get_selected_group(pkg.groups, 'agricultural-research-stations') %#}
+
+{% resource 'grouphierarchy/group_label.css' %}
+
+
+
+
+<ul class="dataset-markers">
+{% for main in main_group %}
+    {% if main.name == count[0].name %}
+    <li class="marker zero">
+    {% elif main.name == count[1].name %}
+    <li class="marker one">
+    {% elif main.name == count[2].name %}
+    <li class="marker two">
+    {% elif main.name == count[3].name %}
+    <li class="marker three">
+    {% elif main.name == count[4].name %}
+    <li class="marker four">
+    {% elif main.name == count[5].name %}
+    <li class="marker five">
+    {% elif main.name == count[6].name %}
+    <li class="marker six">
+    {% elif main.name == count[7].name %}
+    <li class="marker seven">
+    {% elif main.name == count[8].name %}
+    <li class="marker eight">
+    {% else%}
+    <li class="marker free">
+    {% endif %}
+    <a href="{{ app_globals.site_url }}/group/{{ main.name }}">{{ main.title }}</a></li>
+{% endfor %}
+
+{#
+{% for main in main_group %}
+    <li class="marker main-g"><a href="{{ app_globals.site_url }}/group/{{ main.name }}">{{ main.title }}</a></li>
+{% endfor %}
+
+{% if themes %}
+{% for theme in themes %}
+    <li class="marker theme"><a href="{{ app_globals.site_url }}/group/{{ theme.name }}">{{ theme.title }}</a></li>
+{% endfor %}
+{% endif %}
+
+{% if research_station %}
+{% for station in research_station %}
+    <li class="marker station"><a href="{{ app_globals.site_url }}/group/{{ station.name }}">{{ station.title }}</a></li>
+{% endfor %}
+{% endif %}
+#}
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
