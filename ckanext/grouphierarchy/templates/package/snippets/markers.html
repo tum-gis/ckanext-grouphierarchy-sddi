@@ -1,9 +1,9 @@
 {#% set marker_strlen = 12 %#}
 {% set pkg = c.pkg_dict %}
 {% set count = h.get_allowable_children_groups_g('main-categories') %}
-{% set main_group = h.get_selected_group(pkg.groups, 'main-categories') %}
-{#% set themes = h.get_selected_group(pkg.groups, 'themes') %}
-{% set research_station = h.get_selected_group(pkg.groups, 'agricultural-research-stations') %#}
+{% set main_categories = h.get_selected_group(pkg.groups, 'main-categories') %}
+{#% set topics = h.get_selected_group(pkg.groups, 'topics') %}
+{% set model_regions = h.get_selected_group(pkg.groups, 'model-regions') %#}
 
 {% resource 'grouphierarchy/group_label.css' %}
 
@@ -11,7 +11,7 @@
 
 
 <ul class="dataset-markers">
-{% for main in main_group %}
+{% for main in main_categories %}
     {% if main.name == count[0].name %}
     <li class="marker zero">
     {% elif main.name == count[1].name %}
@@ -37,19 +37,19 @@
 {% endfor %}
 
 {#
-{% for main in main_group %}
-    <li class="marker main-g"><a href="{{ app_globals.site_url }}/group/{{ main.name }}">{{ main.title }}</a></li>
+{% for main_category in main_categories %}
+    <li class="marker main_category-g"><a href="{{ app_globals.site_url }}/group/{{ main_category.name }}">{{ main_category.title }}</a></li>
 {% endfor %}
 
-{% if themes %}
-{% for theme in themes %}
-    <li class="marker theme"><a href="{{ app_globals.site_url }}/group/{{ theme.name }}">{{ theme.title }}</a></li>
+{% if topics %}
+{% for topic in topics %}
+    <li class="marker topic"><a href="{{ app_globals.site_url }}/group/{{ topic.name }}">{{ topic.title }}</a></li>
 {% endfor %}
 {% endif %}
 
-{% if research_station %}
-{% for station in research_station %}
-    <li class="marker station"><a href="{{ app_globals.site_url }}/group/{{ station.name }}">{{ station.title }}</a></li>
+{% if model_regions %}
+{% for model_region in model_regions %}
+    <li class="marker model_region"><a href="{{ app_globals.site_url }}/group/{{ model_region.name }}">{{ model_region.title }}</a></li>
 {% endfor %}
 {% endif %}
 #}
