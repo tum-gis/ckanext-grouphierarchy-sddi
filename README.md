@@ -1,5 +1,9 @@
 # ckanext-grouphierarchy - group hierarchy for CKAN
 
+This CKAN extension is intended to be used in combination with the [SDDI CKAN Docker container](https://github.com/tum-gis/SDDI-CKAN-Docker).
+
+## Overview
+
 Provides a new field on the group edit form to select a parent
 group. This new hierarchical arrangement of groups is displayed
 using templates in this extension, instead of the usual list. An group
