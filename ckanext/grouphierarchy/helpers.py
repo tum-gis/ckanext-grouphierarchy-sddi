@@ -62,6 +62,8 @@ def get_allowable_parent_groups_g(group_id):
 def get_allowable_children_groups_g(group_id):
     if group_id:
         group = model.Group.get(group_id)
+		if group == None:
+			return []
         allowable_parent_groups = group.get_children_group_hierarchy_g(type='group')
     else:
         allowable_parent_groups = model.Group.all(
