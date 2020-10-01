@@ -15,7 +15,7 @@ Templates (hierarchy_display plugin):
 * /group/about/{id} - now also shows the relevant part of the hierarchy
 
 Please note that the categories of groups are hard coded.
-github.com/MandanaMoshref/ckanext-grouphierarchy/blob/master/ckanext/grouphierarchy/templates/group/snippets/group_list.html#L33 / L49 / L66
+github.com/tum-gis/ckanext-grouphierarchy-sddi/blob/master/ckanext/grouphierarchy/templates/group/snippets/group_list.html
 
 
 Snippets (used by hierarchy_display and ckanext-scheming):
@@ -51,13 +51,15 @@ Install the extension in your python environment
 ```
 $ . /usr/lib/ckan/default/bin/activate
 (pyenv) $ cd /usr/lib/ckan/default/src
-(pyenv) $ pip install -e "git+https://github.com/MandanaMoshref/ckanext-grouphierarchy.git#egg=ckanext-grouphierarchy"
+(pyenv) $ pip install -e "git+https://tum-gis/ckanext-grouphierarchy-sddi.git#egg=ckanext-grouphierarchy-sddi"
 ```
 Then change your CKAN ini file (e.g. development.ini or production.ini).  Note that display_group
 should come before form_group
 ```
 ckan.plugins = stats text_view recline_view ... display_group form_group
 ```
+
+Important: This Extension only works if you have the parent groups "main-categories" ("Hauptkategorien") and "topics" ("Themen"). You will get an error if you do not use these groups.
 
 ## Copyright & Licence
 
