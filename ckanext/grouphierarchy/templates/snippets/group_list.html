@@ -25,12 +25,12 @@ Example:
 
   <div class="box" style="background-color:#0065bd;">
         <center><h2 style="color: white; border: 10px" >{% trans %}Hauptkategorien{% endtrans %}</h2></center>
-        
+
 {% block group_list %}
 <ul class="media-grid" data-module="media-grid">
 	{% block group_list_inner %}
 
-{% for group in h.get_allowable_children_groups_g('main-categories')  %}
+{% for group in h.get_allowable_children_groups('main-categories')  %}
  {% snippet "group/snippets/group_tree.html", group=group, position=loop.index %}
           {% endfor %}
             {% endblock %}
@@ -51,7 +51,7 @@ Example:
 <ul class="media-grid" data-module="media-grid">
 	{% block group_list_inner3 %}
 
-{% for group in h.get_allowable_children_groups_g('topics')  %}
+{% for group in h.get_allowable_children_groups('topics')  %}
  {% snippet "group/snippets/group_tree.html", group=group, position=loop.index %}
           {% endfor %}
             {% endblock %}
@@ -73,7 +73,7 @@ Example:
 <ul class="media-grid" data-module="media-grid">
 	{% block group_list_inner2 %}
 
-{% for group in h.get_allowable_children_groups_g('model-regions')  %}
+{% for group in h.get_allowable_children_groups('model-regions')  %}
  {% snippet "group/snippets/group_tree.html", group=group, position=loop.index %}
           {% endfor %}
             {% endblock %}

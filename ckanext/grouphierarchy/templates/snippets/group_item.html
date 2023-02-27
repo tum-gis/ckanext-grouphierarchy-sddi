@@ -1,0 +1,43 @@
+<div class="box" style="background-color:#0065bd">
+    <a href="">
+        <center>
+            <h2 style="color: white; border: 10px">
+                {{ _("Groups") }}
+            </h2>
+        </center>
+    </a>
+</div>
+
+{% if groups %}
+{% for group in groups %}
+
+<div class="box">
+    <section class="group_list module moudle-narrow module-shallow">
+        <header class="module-heading">
+            <a class="module-image" href="{{ group.image_display_url }}">
+                <img alt="dataset" src="{{ group.image_display_url }}">
+            </a>
+            <h3 class="media-heading">
+                <a href="{{ h.url_for('group.read', id=group.name) }}">{{ _(group.display_name) }}</a>
+            </h3>
+        </header>
+
+        {% for pkg in group.packages() %}
+        <ul class="list-unstyled dataset-list">
+            <li class="dataset-item module-content">
+                <div class="dataset-content">
+                    <div class="dataset-content">
+                        <h3 class="dataset-heading">
+                            <a href="{{ h.url_for('dataset.read', id=pkg.name) }}">{{ _(pkg.name|capitalize) }}</a>
+                        </h3>
+                        <div>{{ _(pkg.title) }}</div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+        {% endfor %}
+    </section>
+</div>
+
+{% endfor %}
+{% endif %}

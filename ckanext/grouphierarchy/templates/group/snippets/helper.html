@@ -1,0 +1,27 @@
+
+<div class="module module-narrow module-shallow">
+    <h2 class="module-heading">
+      <i class="fa fa-info-circle"></i>
+      {{ _('What are Groups?') }}
+    </h2>
+    <div class="module-content">
+      <p>
+        {% trans %}
+          You can use CKAN Groups to create and manage collections of datasets.
+          This could be to catalogue datasets for a particular project or team,
+          or on a particular theme, or as a very simple way to help people find
+          and search your own published datasets.
+        {% endtrans %}
+      </p>
+      {% set top_nodes = h.group_tree(organizations=organizations, type_='group') %}
+      {% for node in top_nodes recursive %}
+      <p></p>
+      <b>{{ _(node.name|capitalize) }}</b>
+      {% if node.children %}
+      <ul>
+        <li>{{ loop( node.children ) }}</li>
+      </ul>
+      {% endif %}
+      {% endfor %}
+    </div>
+  </div>
