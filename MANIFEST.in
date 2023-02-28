@@ -2,3 +2,4 @@ recursive-include    ckanext/grouphierarchy/fanstatic  *
 recursive-include    ckanext/grouphierarchy/logic      *
 recursive-include    ckanext/grouphierarchy/public     *
 recursive-include    ckanext/grouphierarchy/templates  *
+recursive-include    ckanext/grouphierarchy            init_data.json
