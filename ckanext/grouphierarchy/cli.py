@@ -24,7 +24,7 @@ def grouphierarchy():
 
 @grouphierarchy.command("init_data")
 def init_data():
-    print(_site_url)
+
     data = []
     # ckanext.grouphierarchy.init_data = example.json
     # make sure the .json file is inside grouphierarchy directory,
@@ -48,7 +48,6 @@ def init_data():
         }
         if group.get('image_url'):
             group['image_url'] = _site_url + group.get('image_url')
-            print(group['image_url'])
 
         try:
             tk.get_action('group_create')(context, group)
