@@ -15,7 +15,7 @@
     <section class="group_list module moudle-narrow module-shallow">
         <header class="module-heading">
             <a class="module-image" href="{{ group.image_display_url }}">
-                <img alt="dataset" src="{{ group.image_display_url }}">
+                <img alt="dataset" src="{{ group.image_url }}">
             </a>
             <h3 class="media-heading">
                 <a href="{{ h.url_for('group.read', id=group.name) }}">{{ _(group.display_name) }}</a>
