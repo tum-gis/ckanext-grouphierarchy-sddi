@@ -1,9 +1,11 @@
 <div class="box" style="background-color:#0065bd">
     <a href="">
         <center>
-            <h2 style="color: white; border: 10px">
-                {{ _("Groups") }}
-            </h2>
+            <a href="{{ h.url_for('group.index') }}">
+                <h2 style="color: white; border: 10px">
+                    {{ _("Groups") }}
+                </h2>
+            </a>
         </center>
     </a>
 </div>

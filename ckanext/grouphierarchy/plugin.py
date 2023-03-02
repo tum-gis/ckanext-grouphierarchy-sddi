@@ -44,8 +44,7 @@ class HierarchySDDIDisplay(p.SingletonPlugin):
             "get_group_image": helpers.get_group_image,
             "group_tree_crumbs": helpers.group_tree_crumbs,
             "group_tree_section_g": helpers.group_tree_section_g,
-            "get_recently_modified_group": helpers.get_recently_modified_group,
-            "get_recently_modified_org": helpers.get_recently_modified_org
+            "get_recently_modified_group": helpers.get_recently_modified_group
         }
 
     # IClick

@@ -1,9 +1,11 @@
 <div class="box" style="background-color:#0065bd">
     <a href="">
         <center>
-            <h2 style="color: white; border: 10px">
-                {{ _("Organizations") }}
-            </h2>
+            <a href="{{ h.url_for('organization.index') }}">
+                <h2 style="color: white; border: 10px">
+                    {{ _("Organizations") }}
+                </h2>
+            </a>
         </center>
     </a>
 </div>
@@ -18,7 +20,7 @@
                 <img alt="dataset" src="{{ h.url_for_static('uploads/group/' + org.image_url) }}">
             </a>
             <h3 class="media-heading">
-                <a href="{{ h.url_for('group.read', id=org.name) }}">{{ _(org.display_name) }}</a>
+                <a href="{{ h.url_for('organization.read', id=org.name) }}">{{ _(org.display_name) }}</a>
             </h3>
         </header>
 

@@ -105,13 +105,14 @@ def get_group_image(group_id):
     return
 
 
-def get_recently_modified_group():
+def get_recently_modified_group(_type):
     num = int(tk.config.get("ckanext.grouphierachy.homepage.group_show", 4))
 
-    groups = tk.get_action("group_list")(
+    action = f'{_type}_list'
+    groups = tk.get_action(action)(
         {},
         {
-            "type": "group",
+            "type": _type,
             "sort": "package_count",
         },
     )
@@ -128,28 +129,3 @@ def get_recently_modified_group():
             reverse=True,
         )
     return sorted_groups[:num]
-
-
-def get_recently_modified_org():
-    num = int(tk.config.get("ckanext.grouphierachy.homepage.group_show", 4))
-
-    orgs = tk.get_action("organization_list")(
-        {},
-        {
-            "type": "organization",
-            "sort": "package_count",
-        },
-    )
-
-    sorted_orgs = []
-    _orgs = []
-    if orgs:
-        for org in orgs:
-            groupobj = model.Session.query(model.Group).filter_by(name=org).first()
-            _orgs.append(groupobj)
-        sorted_orgs = sorted(
-            _orgs,
-            key=lambda org: [pkg.metadata_modified for pkg in org.packages() if pkg],
-            reverse=True,
-        )
-    return sorted_orgs[:num]
