@@ -17,7 +17,18 @@
     <section class="group_list module moudle-narrow module-shallow">
         <header class="module-heading">
             <a class="module-image" href="{{ group.image_display_url }}">
-                <img alt="dataset" src="{{ group.image_url }}">
+
+                {% if h.is_url(group.image_url) %}
+                    {% set group_image = group.image_url %}
+                {% else %}
+                    {% set group_image = h.url_for_static('uploads/group/' + group.image_url)  %}
+                {% endif %}
+
+                {% if not group.image_url %}
+                    {% set group_image = h.url_for_static('/base/images/placeholder-group.png') %}
+                {% endif %}
+
+                <img alt="{{group.title}}" src="{{ group_image }}" style="position:relative;bottom: 6px;">
             </a>
             <h3 class="media-heading">
                 <a href="{{ h.url_for('group.read', id=group.name) }}">{{ _(group.display_name) }}</a>

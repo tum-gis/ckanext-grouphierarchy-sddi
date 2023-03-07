@@ -16,8 +16,14 @@
 <div class="box">
     <section class="group_list module moudle-narrow module-shallow">
         <header class="module-heading">
+
+            {% set org_image = h.url_for_static('uploads/group/' + org.image_url) %}
+            {% if not org.image_url %}
+                {% set org_image = h.url_for_static('/base/images/placeholder-organization.png') %}
+            {% endif %}
+
             <a class="module-image" href="{{ org.image_display_url }}">
-                <img alt="dataset" src="{{ h.url_for_static('uploads/group/' + org.image_url) }}">
+                <img alt="{{org.title}}" src="{{ org_image }}" style="position:relative;bottom: 6px;">
             </a>
             <h3 class="media-heading">
                 <a href="{{ h.url_for('organization.read', id=org.name) }}">{{ _(org.display_name) }}</a>

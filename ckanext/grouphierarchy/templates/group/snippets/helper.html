@@ -16,10 +16,10 @@
       {% set top_nodes = h.group_tree(organizations=organizations, type_='group') %}
       {% for node in top_nodes recursive %}
       <p></p>
-      <b>{{ _(node.name|capitalize) }}</b>
+      <b>{{ _(node.title) }}</b>
       {% if node.children %}
       <ul>
-        <li>{{ loop( node.children ) }}</li>
+        <li style="list-style-type: none;">{{ loop( node.children ) }}</li>
       </ul>
       {% endif %}
       {% endfor %}
