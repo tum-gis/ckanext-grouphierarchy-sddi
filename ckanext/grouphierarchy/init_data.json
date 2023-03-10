@@ -8,7 +8,8 @@
     {"title": "Methode", "name": "method", "image_url": "/base/images/group_icons/method.png", "groups": [{"capacity": "public", "name": "main-categories"}]},
     {"title": "Gerät / Ding", "name": "device", "image_url": "/base/images/group_icons/device.svg", "groups": [{"capacity": "public", "name": "main-categories"}]},
     {"title": "Geoobjekt", "name": "geoobject", "image_url": "/base/images/group_icons/geoobject.svg", "groups": [{"capacity": "public", "name": "main-categories"}]},
-
+    {"title": "Digitaller Zwilling", "name": "digitaler-zwilling", "image_url": "/base/images/group_icons/dz-logo.jpg", "groups": [{"capacity": "public", "name": "main-categories"}]},
+    
     {"title": "Themen", "name": "topics"},
     {"title": "Verwaltung", "name": "administration", "image_url": "/base/images/group_icons/administration.svg", "groups": [{"capacity": "public", "name": "topics"}]},
     {"title": "Stadtplanung", "name": "urban-planning", "image_url": "/base/images/group_icons/urban_planning.svg", "groups": [{"capacity": "public", "name": "topics"}]},
@@ -24,5 +25,6 @@
     {"title": "Kultur", "name": "culture", "image_url": "/base/images/group_icons/culture.svg", "groups": [{"capacity": "public", "name": "topics"}]},
     {"title": "Mobilität", "name": "mobility", "image_url": "/base/images/group_icons/mobility.svg", "groups": [{"capacity": "public", "name": "topics"}]},
     {"title": "Landwirtschaft", "name": "agriculture", "image_url": "/base/images/group_icons/agriculture.svg", "groups": [{"capacity": "public", "name": "topics"}]},
-    {"title": "Gewerbe / Handwerk", "name": "craft", "image_url": "/base/images/group_icons/craft.svg", "groups": [{"capacity": "public", "name": "topics"}]}
+    {"title": "Gewerbe / Handwerk", "name": "craft", "image_url": "/base/images/group_icons/craft.svg", "groups": [{"capacity": "public", "name": "topics"}]},
+    {"title": "Arbeiten", "name": "work", "image_url": "/base/images/group_icons/work.svg", "groups": [{"capacity": "public", "name": "topics"}]}
 ]
