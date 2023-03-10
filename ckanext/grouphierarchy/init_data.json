@@ -25,6 +25,6 @@
     {"title": "Kultur", "name": "culture", "image_url": "/base/images/group_icons/culture.svg", "groups": [{"capacity": "public", "name": "topics"}]},
     {"title": "Mobilität", "name": "mobility", "image_url": "/base/images/group_icons/mobility.svg", "groups": [{"capacity": "public", "name": "topics"}]},
     {"title": "Landwirtschaft", "name": "agriculture", "image_url": "/base/images/group_icons/agriculture.svg", "groups": [{"capacity": "public", "name": "topics"}]},
-    {"title": "Gewerbe / Handwerk", "name": "craft", "image_url": "/base/images/group_icons/craft.svg", "groups": [{"capacity": "public", "name": "topics"}]}
+    {"title": "Gewerbe / Handwerk", "name": "craft", "image_url": "/base/images/group_icons/craft.svg", "groups": [{"capacity": "public", "name": "topics"}]},
     {"title": "Arbeiten", "name": "work", "image_url": "/base/images/group_icons/work.svg", "groups": [{"capacity": "public", "name": "topics"}]}
 ]
