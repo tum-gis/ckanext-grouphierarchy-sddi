@@ -7,10 +7,11 @@
     <div class="module-content">
       <p>
         {% trans %}
-          You can use CKAN Groups to create and manage collections of datasets.
-          This could be to catalogue datasets for a particular project or team,
-          or on a particular theme, or as a very simple way to help people find
-          and search your own published datasets.
+           Alle Einträge im Katalog können verschiedenen Gruppen zugeordnet werden,
+           um die Einordnung und Recherche der Informationen einfach zu gestalten. 
+           Jeder Datensatz ist dabei in genau einer Hauptkategorie-Gruppe, 
+           und keiner, einer oder mehreren Modellregionen-Gruppen bzw. 
+           Themen-Gruppen eingetragen. Die Aufteilung der einzelnen Gruppen ist wie folgt:
         {% endtrans %}
       </p>
       {% set top_nodes = h.group_tree(organizations=organizations, type_='group') %}
