@@ -1,9 +1,20 @@
 {% ckan_extends %}
 
+  {% block primary_content_inner %}
+
+  {{ super() }}
+
+  {% set dataset_extent = h.get_pkg_dict_extra(c.pkg_dict, 'spatial', '') %}
+  {% if dataset_extent %}
+    {% snippet "spatial/snippets/dataset_map.html", extent=dataset_extent %}
+  {% endif %}
+
+  {% endblock %}
+
   {% block package_description %}
   {% block package_markers %}
 
-      {% snippet 'package/snippets/markers.html' %}
+    {% snippet 'package/snippets/markers.html' %}
     {% endblock %}
     {% if pkg.private %}
       <span class="dataset-private label label-inverse pull-top">
@@ -31,15 +42,4 @@
     {% endblock %}
     {# FIXME why is this here? seems wrong #}
     <span class="insert-comment-thread"></span>
-  {% endblock %}
-
-  {% block primary_content_inner %}
-
-  {{ super() }}
-
-  {% set dataset_extent = h.get_pkg_dict_extra(c.pkg_dict, 'spatial', '') %}
-  {% if dataset_extent %}
-    {% snippet "spatial/snippets/dataset_map.html", extent=dataset_extent %}
-  {% endif %}
-
   {% endblock %}
