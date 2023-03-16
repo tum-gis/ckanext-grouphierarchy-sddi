@@ -7,11 +7,11 @@
     <div class="module-content">
       <p>
         {% trans %}
-           Alle Einträge im Katalog können verschiedenen Gruppen zugeordnet werden,
-           um die Einordnung und Recherche der Informationen einfach zu gestalten. 
-           Jeder Datensatz ist dabei in genau einer Hauptkategorie-Gruppe, 
-           und keiner, einer oder mehreren Modellregionen-Gruppen bzw. 
-           Themen-Gruppen eingetragen. Die Aufteilung der einzelnen Gruppen ist wie folgt:
+           Alle Einträge in diesem Katalog können auf verschiedene Weise gruppiert werden.
+          Dabei muss jeder Katalogeintrag genau einer Hauptkategorie und optional beliebig vielen Themenfeldern zugeordnet werden.
+          Die Hauptkategorie gibt Auskunft über die Art der Informationsressource und bestimmt damit, welche Metadaten benötigt werden.
+          Die Themenzugehörigkeit gibt an, für welche Anwendungsfelder ein Katalogeintrag relevant ist.
+          Die Aufteilung der einzelnen Gruppen ist wie folgt:
         {% endtrans %}
       </p>
       {% set top_nodes = h.group_tree(organizations=organizations, type_='group') %}
