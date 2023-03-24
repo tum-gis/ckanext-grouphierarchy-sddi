@@ -48,7 +48,7 @@ def _group_tree_check_g(data_dict):
 
 
 def user_create(context, data_dict):
-    role = p.toolkit.config.get('ckan.userautoadd.organization_role', '')
+    role = p.toolkit.config.get('ckan.userautoadd.organization_role', 'member')
     filepath = p.toolkit.config.get("ckanext.grouphierarchy.init_data", None)
 
     if not filepath:
