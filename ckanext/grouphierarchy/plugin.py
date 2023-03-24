@@ -32,7 +32,8 @@ class HierarchySDDIDisplay(p.SingletonPlugin):
 
     def get_actions(self):
         return {
-            "group_tree_children_g": action.group_tree_children_g
+            "group_tree_children_g": action.group_tree_children_g,
+            "user_create": action.user_create
             }
 
     # ITemplateHelpers
