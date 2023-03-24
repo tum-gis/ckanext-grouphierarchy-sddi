@@ -1,8 +1,4 @@
-import os
-import json
 import logging
-
-from pathlib import Path
 
 import ckan.plugins as p
 import ckan.logic as logic
@@ -11,7 +7,6 @@ import ckan.model as model
 
 log = logging.getLogger(__name__)
 
-HERE = Path(__file__).parents[1]
 _get_or_bust = logic.get_or_bust
 
 
@@ -48,24 +43,19 @@ def _group_tree_check_g(data_dict):
 
 
 def user_create(context, data_dict):
-    role = p.toolkit.config.get('ckan.userautoadd.organization_role', 'member')
-    filepath = p.toolkit.config.get("ckanext.grouphierarchy.init_data", None)
 
-    if not filepath:
-        filepath = "init_data.json"
-
-    with open(os.path.join(HERE, filepath), encoding='utf-8') as f:
-        data = json.load(f)
-
-    site_user = logic.get_action('get_site_user')({'ignore_auth': True}, {})
+    group_list = p.toolkit.get_action('group_list')({}, {})
+    site_user = p.toolkit.get_action('get_site_user')({'ignore_auth': True}, {})
     user = logic.action.create.user_create(context, data_dict)
+
+    role = p.toolkit.config.get('ckan.userautoadd.organization_role', 'member')
     context['user'] = site_user.get('name')
 
-    for group in data:
+    for group in group_list:
         try:
             p.toolkit.get_action('group_show')(
                 context, {
-                    'id': group.get('name'),
+                    'id': group,
                 }
             )
         except logic.NotFound:
@@ -73,7 +63,7 @@ def user_create(context, data_dict):
 
         p.toolkit.get_action('group_member_create')(
             context, {
-                'id': group.get('name'),
+                'id': group,
                 'username': user['name'],
                 'role': role,
             }
