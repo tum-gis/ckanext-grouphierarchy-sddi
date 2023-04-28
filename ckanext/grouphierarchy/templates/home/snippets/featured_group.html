@@ -1,0 +1,6 @@
+{% set groups = h.get_recently_modified_group('group') %}
+
+
+<div class="card box">
+{% snippet 'snippets/group_item.html', groups=groups %}
+</div>

@@ -1,0 +1,79 @@
+.masthead {
+    background-color: #fff !important;
+    background: #fff !important;
+}
+
+.masthead .nav > li > a {
+    color: #525556 !important;
+    font-weight: bold;
+}
+
+.masthead .nav > li.active> a {
+    color: #fff !important;
+    font-weight: bold;
+}
+
+.masthead .nav > li > a:hover {
+    color: #fff !important;
+    font-weight: bold;
+}
+
+.account-masthead {
+    min-height: 30px !important;
+    color: #fff !important;
+    background: #005299 !important;
+}
+
+.homepage [role=main] {
+    padding: initial !important;
+}
+
+.masthead .container {
+    border-bottom:  1px solid #999999 !important;
+}
+
+.hero {
+    background: #0065bd url('../base/images/background1.jpg') no-repeat !important;
+    background-size: cover !important;
+    display: flex !important;
+    padding-top: 20px !important;
+}
+
+[role=main] {
+    min-height: 350px !important;
+    background: #fff !important;
+}
+
+.homepage .module-search .module-content {
+    background-color: #0065bd !important;
+}
+
+.homepage .module-search .tags {
+    background-color: #005299 !important;
+}
+
+.main:nth-child(2) {
+    padding-top: 20px !important;
+    background: #fff !important;
+}
+
+.attribution .tum-logo {
+    width: 68px;
+    height: 21px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    background: url('../base/images/tum-logo.png') no-repeat top right;
+    text-indent: -900em;
+    filter: brightness(0) saturate(100%) invert(94%) sepia(12%) saturate(323%) hue-rotate(158deg) brightness(92%) contrast(93%);
+    margin-left: -20px;
+    position: relative;
+    bottom: 3px;
+}
+
+.site-footer {
+    background: #0065bd !important;
+}
+
+body {
+    background: #0065bd !important;
+}

@@ -38,15 +38,24 @@ Example:
 #}
 
 
-
-
 {% set type = group.type or 'group' %}
 {% set url = h.url_for(type ~ '_read', action='read', id=group.name) %}
 {% block item %}
 <li class="media-item">
   {% block item_inner %}
   {% block image %}
-    <img src="{{ group.image_url or h.url_for_static('/base/images/placeholder-group.png') }}" alt="{{ group.title }}" class="media-image img-responsive">
+
+  {% if h.is_url(image_url) %}
+    {% set group_image = image_url %}
+  {% else %}
+    {% set group_image = h.url_for_static('uploads/group/' + image_url)  %}
+  {% endif %}
+
+  {% if not image_url %}
+    {% set group_image = h.url_for_static('/base/images/placeholder-group.png') %}
+  {% endif %}
+
+    <img src="{{ group_image or h.url_for_static('/base/images/placeholder-group.png') }}" alt="{{ group.title }}" class="media-image img-responsive">
   {% endblock %}
   {% block title %}
     <h3 class="media-heading">{{ group.title }}</h3>
@@ -69,4 +78,3 @@ Example:
 {% if position is divisibleby 3 %}
   <li class="clearfix js-hide"></li>
 {% endif %}
-

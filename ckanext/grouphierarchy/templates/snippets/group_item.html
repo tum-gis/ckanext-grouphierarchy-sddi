@@ -1,0 +1,56 @@
+<div class="box" style="background-color:#0065bd">
+    <a href="">
+        <center>
+            <a href="{{ h.url_for('group.index') }}">
+                <h2 style="color: white; border: 10px">
+                    {{ _("Groups") }}
+                </h2>
+            </a>
+        </center>
+    </a>
+</div>
+
+{% if groups %}
+{% for group in groups %}
+
+<div class="box">
+    <section class="group_list module moudle-narrow module-shallow">
+        <header class="module-heading">
+            <a class="module-image" href="{{ group.image_display_url }}">
+
+                {% if h.is_url(group.image_url) %}
+                    {% set group_image = group.image_url %}
+                {% else %}
+                    {% set group_image = h.url_for_static('uploads/group/' + group.image_url)  %}
+                {% endif %}
+
+                {% if not group.image_url %}
+                    {% set group_image = h.url_for_static('/base/images/placeholder-group.png') %}
+                {% endif %}
+
+                <img alt="{{group.title}}" src="{{ group_image }}" style="position:relative;bottom: 6px;">
+            </a>
+            <h3 class="media-heading">
+                <a href="{{ h.url_for('group.read', id=group.name) }}">{{ _(group.display_name) }}</a>
+            </h3>
+        </header>
+
+        {% for pkg in group.packages() %}
+        <ul class="list-unstyled dataset-list">
+            <li class="dataset-item module-content">
+                <div class="dataset-content">
+                    <div class="dataset-content">
+                        <h3 class="dataset-heading">
+                            <a href="{{ h.url_for('dataset.read', id=pkg.name) }}">{{ _(pkg.name|capitalize) }}</a>
+                        </h3>
+                        <div>{{ _(pkg.title) }}</div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+        {% endfor %}
+    </section>
+</div>
+
+{% endfor %}
+{% endif %}

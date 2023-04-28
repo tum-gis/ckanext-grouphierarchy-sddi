@@ -1,0 +1,28 @@
+
+<div class="module module-narrow module-shallow">
+    <h2 class="module-heading">
+      <i class="fa fa-info-circle"></i>
+      {{ _('What are Groups?') }}
+    </h2>
+    <div class="module-content">
+      <p>
+        {% trans %}
+           Alle Einträge in diesem Katalog können auf verschiedene Weise gruppiert werden.
+          Dabei muss jeder Katalogeintrag genau einer Hauptkategorie und optional beliebig vielen Themenfeldern zugeordnet werden.
+          Die Hauptkategorie gibt Auskunft über die Art der Informationsressource und bestimmt damit, welche Metadaten benötigt werden.
+          Die Themenzugehörigkeit gibt an, für welche Anwendungsfelder ein Katalogeintrag relevant ist.
+          Die Aufteilung der einzelnen Gruppen ist wie folgt:
+        {% endtrans %}
+      </p>
+      {% set top_nodes = h.group_tree(organizations=organizations, type_='group') %}
+      {% for node in top_nodes recursive %}
+      <p></p>
+      <b>{{ _(node.title) }}</b>
+      {% if node.children %}
+      <ul>
+        <li style="list-style-type: none;">{{ loop( node.children ) }}</li>
+      </ul>
+      {% endif %}
+      {% endfor %}
+    </div>
+  </div>

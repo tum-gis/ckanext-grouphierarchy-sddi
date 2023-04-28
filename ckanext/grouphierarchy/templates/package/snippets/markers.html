@@ -1,13 +1,10 @@
 {#% set marker_strlen = 12 %#}
-{% set pkg = c.pkg_dict %}
-{% set count = h.get_allowable_children_groups_g('main-categories') %}
-{% set main_categories = h.get_selected_group(pkg.groups, 'main-categories') %}
+{% set pkg = g.pkg_dict %}
+{% set count = h.get_allowable_children_groups('hauptkategorien') %}
+{% set main_categories = h.get_selected_group(pkg.groups, 'hauptkategorien') %}
+
 {#% set topics = h.get_selected_group(pkg.groups, 'topics') %}
 {% set model_regions = h.get_selected_group(pkg.groups, 'model-regions') %#}
-
-{% resource 'grouphierarchy/group_label.css' %}
-
-
 
 
 <ul class="dataset-markers">
@@ -33,7 +30,7 @@
     {% else%}
     <li class="marker free">
     {% endif %}
-    <a href="{{ app_globals.site_url }}/group/{{ main.name }}">{{ main.title }}</a></li>
+    {# <a href="{{ app_globals.site_url }}/group/{{ main.name }}">{{ main.title }}</a></li> #}
 {% endfor %}
 
 {#

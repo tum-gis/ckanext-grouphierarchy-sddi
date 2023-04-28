@@ -15,21 +15,15 @@ Example:
 
 #}
 
-
-<ul>
-  {% for node in top_nodes recursive %}
-    <li id="node_{{ node.name }}">
-      {% if node.highlighted %}
-        <strong>
-      {% endif %}
-      {% link_for node.title, controller='group', action='read', id=node.name %}
-      {% if node.highlighted %}
-        </strong>
-      {% endif %}
-      {% if node.children %}
-        <ul> {{ loop(node.children) }} </ul>
-      {% endif %}
-    </li>
-  {% endfor %}
-</ul>
-
+{% for node in top_nodes recursive %}
+    {% if node.highlighted %}
+      <strong>
+    {% endif %}
+    {% link_for node.title, controller='group', action='read', id=node.name %}
+    {% if node.highlighted %}
+      </strong>
+    {% endif %}
+    {% if node.children %}
+      <ul> {{ loop(node.children) }} </ul>
+    {% endif %}
+{% endfor %}

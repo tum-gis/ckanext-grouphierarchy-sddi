@@ -1,0 +1,16 @@
+{% set intro = g.site_intro_text %}
+
+<div class="module-content box">
+  <header>
+    {% if intro %}
+      {{ h.render_markdown(intro) }}
+    {% else %}
+      <h1 class="page-heading">{{ _("Willkommen auf der Katalogplattform der Smarten Städte und Regionen Bayern") }}</h1>
+      
+    {% endif %}
+  </header>
+  <p>
+    {% trans %}Ihre Informationsdrehscheibe rund um das Thema Smarte Städte und Regionen mit Informationen zu Daten, Services, Anwendungen und Projekten in den Modellregionen Bayerns.
+    {% endtrans %}
+  </p>
+</div>

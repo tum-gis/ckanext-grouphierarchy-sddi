@@ -2,83 +2,37 @@
 {#
 Display a hierarchical tree of organizations
 
-
 Example:
 
     {% snippet "group/snippets/group_list.html" %}
 
-
-
+#}
+{#
 <div>
-
      {% if  c.q %}
-     	{% set top_nodes = h.group_tree_highlight_g(organizations, h.group_tree_g(type_='group')) %}
+     	{% set top_nodes = h.group_tree_highlight(organizations, h.group_tree(type_='group')) %}
      {% else %}
-     	{% set top_nodes = h.group_tree_g(organizations=organizations, type_='group') %}
+     	{% set top_nodes = h.group_tree(organizations=organizations, type_='group') %}
      {% endif %}
-
      {% snippet 'group/snippets/group_tree_info.html', top_nodes=top_nodes, group=groups, use_longnames=True%}
 </div>
 
 #}
 
+<div class="box" style="background-color:#0065bd;">
+  {% set top_nodes = h.group_tree(organizations=organizations, type_='group') %}
+  {% for node in top_nodes %}
+    <center>
+      <h2 style="color: white; border: 10px" >
+       {{ _(node.title) }}
+      </h2>
+  </center>
 
-  <div class="box" style="background-color:#0065bd;">
-        <center><h2 style="color: white; border: 10px" >{% trans %}Hauptkategorien{% endtrans %}</h2></center>
-        
-{% block group_list %}
-<ul class="media-grid" data-module="media-grid">
-	{% block group_list_inner %}
-
-{% for group in h.get_allowable_children_groups_g('main-categories')  %}
- {% snippet "group/snippets/group_tree.html", group=group, position=loop.index %}
-          {% endfor %}
-            {% endblock %}
-</ul>
-{% endblock %}
-
+  <ul class="media-grid" data-module="media-grid">
+    {% for group in h.get_allowable_children_groups(node.name)  %}
+    {% set image_url = h.get_group_image(group.id) %}
+    {% snippet "group/snippets/group_tree.html", group=group, image_url=image_url, position=loop.index %}
+    {% endfor %}
+  </ul>
+  {% endfor %}
 </div>
-
-
-
-
-
-  <div class="box" style="background-color:#0065bd;">
-        <center><h2 style="color: white; border: 10px" >{% trans %}Themen{% endtrans %}</h2></center>
-        
-{% block group_list3 %}
-<ul class="media-grid" data-module="media-grid">
-	{% block group_list_inner3 %}
-
-{% for group in h.get_allowable_children_groups_g('topics')  %}
- {% snippet "group/snippets/group_tree.html", group=group, position=loop.index %}
-          {% endfor %}
-            {% endblock %}
-</ul>
-{% endblock %}
-
-</div>
-
-
-
-
-{#
-  <div class="box" style="background-color:#0065bd;">
-        <center><h2 style="color: white; border: 10px" >{% trans %}Modellregionen{% endtrans %}</h2></center>
-        
-{% block group_list2 %}
-<ul class="media-grid" data-module="media-grid">
-	{% block group_list_inner2 %}
-
-{% for group in h.get_allowable_children_groups_g('model-regions')  %}
- {% snippet "group/snippets/group_tree.html", group=group, position=loop.index %}
-          {% endfor %}
-            {% endblock %}
-</ul>
-{% endblock %}
-
-</div>
-#}
-
-
-

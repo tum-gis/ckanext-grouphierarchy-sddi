@@ -2,14 +2,14 @@
 {# Breadcrumbs that respect the hierarchy of organizations #}
 
 {% block breadcrumb_content %}
-  {% set parent_list =  h.group_tree_crumbs_g(c.group_dict.name)  %}
+  {% set parent_list =  h.group_tree_crumbs(c.group_dict.name)  %}
   <li>{% link_for _('Groups'), controller='group', action='index' %}</li> 
   {% for parent_node in parent_list %} 
     <li><a href="{{ parent_node.url }}">{{ parent_node.crumbname }}</a></li>
   {% endfor %} 
 {% endblock %}
 {% block content_primary_nav %}
-  {{ h.build_nav_icon('group_read', _('Datasets'), id=c.group_dict.name) }}
-  {{ h.build_nav_icon('group_activity', _('Activity Stream'), id=c.group_dict.name, offset=0, icon='clock-o') }}
-  {{ h.build_nav_icon('group_about', _('About'), id=c.group_dict.name) }}
+  {{ h.build_nav_icon('group.read', _('Datasets'), id=c.group_dict.name) }}
+  {{ h.build_nav_icon('group.activity', _('Activity Stream'), id=c.group_dict.name, offset=0, icon='clock-o') }}
+  {{ h.build_nav_icon('group.about', _('About'), id=c.group_dict.name) }}
 {% endblock %}
