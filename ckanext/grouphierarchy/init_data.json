@@ -8,7 +8,7 @@
     {"title": "Methode", "name": "method", "image_url": "/base/images/group_icons/method.png", "groups": [{"capacity": "public", "name": "main-categories"}]},
     {"title": "Gerät / Ding", "name": "device", "image_url": "/base/images/group_icons/device.svg", "groups": [{"capacity": "public", "name": "main-categories"}]},
     {"title": "Geoobjekt", "name": "geoobject", "image_url": "/base/images/group_icons/geoobject.svg", "groups": [{"capacity": "public", "name": "main-categories"}]},
-    {"title": "Digitaler Zwilling", "name": "digitaler-zwilling", "image_url": "/base/images/group_icons/dz-logo.jpg", "groups": [{"capacity": "public", "name": "main-categories"}]},
+    {"title": "Digitaler Zwilling", "name": "digital-twin", "image_url": "/base/images/group_icons/dz-logo.jpg", "groups": [{"capacity": "public", "name": "main-categories"}]},
     
     {"title": "Themen", "name": "topics"},
     {"title": "Verwaltung", "name": "administration", "image_url": "/base/images/group_icons/administration.svg", "groups": [{"capacity": "public", "name": "topics"}]},
