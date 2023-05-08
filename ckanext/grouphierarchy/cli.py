@@ -8,6 +8,8 @@ import ckan.model as model
 
 from ckan.cli import error_shout
 
+from ckanext.grouphierarchy.helpers import get_init_data
+
 
 NotFound = tk.ObjectNotFound
 NotAuthorized = tk.NotAuthorized
@@ -25,18 +27,7 @@ def grouphierarchy():
 @grouphierarchy.command("init_data")
 def init_data():
 
-    data = []
-    # ckanext.grouphierarchy.init_data = example.json
-    # make sure the .json file is inside grouphierarchy directory,
-    # otherwise it won't work
-    filepath = tk.config.get("ckanext.grouphierarchy.init_data", None)
-    # if the .json file is not set in the .ini it would fall to the default one
-    if not filepath:
-        filepath = "init_data.json"
-
-    with open(os.path.join(HERE, filepath), encoding='utf-8') as f:
-        data = json.load(f)
-
+    data = get_init_data()
     user = tk.get_action('get_site_user')({'ignore_auth': True})
 
     for group in data:
