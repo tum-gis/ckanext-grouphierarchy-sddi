@@ -45,7 +45,7 @@
                         </h3>
                         {% set truncate = truncate or 180 %}
                         {% set notes = h.markdown_extract(pkg.notes, extract_length=truncate) %}
-                        <div>{{ _(notes) }}</div>
+                        <div>{{ notes }}</div>
                     </div>
                 </div>
             </li>
