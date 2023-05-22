@@ -36,9 +36,11 @@
                 <div class="dataset-content">
                     <div class="dataset-content">
                         <h3 class="dataset-heading">
-                            <a href="{{ h.url_for('dataset.read', id=pkg.name) }}">{{ _(pkg.name|capitalize) }}</a>
+                            <a href="{{ h.url_for('dataset.read', id=pkg.name) }}">{{ _(pkg.title) }}</a>
                         </h3>
-                        <div>{{ _(pkg.title) }}</div>
+                        {% set truncate = truncate or 180 %}
+                        {% set notes = h.markdown_extract(pkg.notes, extract_length=truncate) %}
+                        <div>{{ notes }}</div>
                     </div>
                 </div>
             </li>

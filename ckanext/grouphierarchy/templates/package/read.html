@@ -1,11 +1,12 @@
 {% ckan_extends %}
 
-{
-  {% block package_description %}
-  {% block package_markers %}
 
-      {% snippet 'package/snippets/markers.html' %}
-    {% endblock %}
+
+
+{% block package_description %}
+  {% block package_markers %}
+    {% snippet 'package/snippets/markers.html' %}
+  {% endblock %}
     {% if pkg.private %}
       <span class="dataset-private label label-inverse pull-top">
         <i class="fa fa-lock"></i>

@@ -108,12 +108,14 @@ def get_group_image(group_id):
 def get_recently_modified_group(_type):
     num = int(tk.config.get("ckanext.grouphierachy.homepage.group_show", 4))
 
+    allowed_groups = get_names_in_main_category()
     action = f'{_type}_list'
     groups = tk.get_action(action)(
         {},
         {
             "type": _type,
             "sort": "package_count",
+            "groups": allowed_groups,
         },
     )
 
@@ -129,3 +131,29 @@ def get_recently_modified_group(_type):
             reverse=True,
         )
     return sorted_groups[:num]
+
+
+def get_names_in_main_category():
+    data = get_init_data()
+    get_all_groups = [group for group in data if group.get('groups')]
+    get_all_groups_in_main = (
+        [group['name'] for group in get_all_groups 
+        if group.get('groups')[0]['name'] == 'main-categories']
+    )
+    return get_all_groups_in_main
+
+
+def get_init_data():
+    import os
+    import json
+
+    HERE = os.path.dirname(__file__)
+    # ckanext.grouphierarchy.init_data = example.json
+    # make sure the .json file is inside grouphierarchy directory,
+    # otherwise it won't work
+    # if the .json file is not set in the .ini it would fall to the default one
+    filepath = tk.config.get("ckanext.grouphierarchy.init_data", "init_data.json")
+    with open(os.path.join(HERE, filepath), encoding='utf-8') as f:
+        data = json.load(f)
+
+    return data
