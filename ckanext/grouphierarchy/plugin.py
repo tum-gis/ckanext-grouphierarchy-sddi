@@ -1,6 +1,7 @@
 import logging
 
 import ckan.plugins as p
+
 import ckanext.grouphierarchy.cli as cli
 from ckanext.grouphierarchy.logic import action
 from ckanext.grouphierarchy import helpers
@@ -35,6 +36,16 @@ class HierarchySDDIDisplay(p.SingletonPlugin):
             "group_tree_children_g": action.group_tree_children_g,
             "user_create": action.user_create
             }
+
+    def update_config_schema(self, schema):
+        ignore_missing = p.toolkit.get_validator(u'ignore_missing')
+        unicode_safe = p.toolkit.get_validator(u'unicode_safe')
+
+        schema.update({
+            u'ckan.site_intro_paragraph': [ignore_missing, unicode_safe],
+            u'ckan.background_image': [ignore_missing, unicode_safe],
+        })
+        return schema
 
     # ITemplateHelpers
 

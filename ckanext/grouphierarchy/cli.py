@@ -24,35 +24,44 @@ def grouphierarchy():
     pass
 
 
-@grouphierarchy.command("init_data")
-def init_data():
-
-    data = get_init_data()
+def create_org_or_group(group, is_org=False):
     user = tk.get_action('get_site_user')({'ignore_auth': True})
-
-    for group in data:
-        context = {
+    context = {
             "model": model,
             "session": model.Session,
             "user": user['name'],
             "return_id_only": True
         }
-        if group.get('image_url'):
-            group['image_url'] = _site_url + group.get('image_url')
 
-        try:
-            tk.get_action('group_create')(context, group)
-        except (NotFound, NotAuthorized) as e:
-            error_shout(e)
-            raise click.Abort()
-        except dict_fns.DataError:
-            error_shout('Integrity Error')
-            raise click.Abort()
-        except ValidationError as e:
-            error_shout(e)
-            raise click.Abort()
+    grp_or_org = 'organization_create' if is_org else 'group_create'
+    if group.get('image_url'):
+        group['image_url'] = _site_url + group.get('image_url')
+
+    try:
+        tk.get_action(grp_or_org)(context, group)
+    except (NotFound, NotAuthorized) as e:
+        error_shout(e)
+        raise click.Abort()
+    except dict_fns.DataError:
+        error_shout('Integrity Error')
+        raise click.Abort()
+    except ValidationError as e:
+        error_shout(e)
+        raise click.Abort()
+
+
+@grouphierarchy.command("init_data")
+def init_data():
+
+    data = get_init_data()
+
+    for group in data.get('groups'):
+        create_org_or_group(group)
+    for org in data.get('organizations'):
+        create_org_or_group(org, is_org=True)
+
     click.secho(
-        "Successfully created the initial Groups",
+        "Successfully created the initial Orgs/Groups",
         fg="green",
         bold=True
     )

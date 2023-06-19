@@ -1,4 +1,4 @@
-[
+{"groups": [
     {"title": "Hauptkategorien", "name": "main-categories"},
     {"title": "Datensatz und Dokumente", "name": "dataset", "image_url": "/base/images/group_icons/dataset.jpg", "groups":[{"capacity": "public", "name": "main-categories"}]},
     {"title": "Online-Dienst", "name": "online-service", "image_url": "/base/images/group_icons/online_service.png", "groups": [{"capacity": "public", "name": "main-categories"}]},
@@ -9,7 +9,7 @@
     {"title": "Gerät / Ding", "name": "device", "image_url": "/base/images/group_icons/device.svg", "groups": [{"capacity": "public", "name": "main-categories"}]},
     {"title": "Geoobjekt", "name": "geoobject", "image_url": "/base/images/group_icons/geoobject.svg", "groups": [{"capacity": "public", "name": "main-categories"}]},
     {"title": "Digitaler Zwilling", "name": "digital-twin", "image_url": "/base/images/group_icons/dz-logo.jpg", "groups": [{"capacity": "public", "name": "main-categories"}]},
-    
+
     {"title": "Themen", "name": "topics"},
     {"title": "Verwaltung", "name": "administration", "image_url": "/base/images/group_icons/administration.svg", "groups": [{"capacity": "public", "name": "topics"}]},
     {"title": "Stadtplanung", "name": "urban-planning", "image_url": "/base/images/group_icons/urban_planning.svg", "groups": [{"capacity": "public", "name": "topics"}]},
@@ -27,4 +27,16 @@
     {"title": "Landwirtschaft", "name": "agriculture", "image_url": "/base/images/group_icons/agriculture.svg", "groups": [{"capacity": "public", "name": "topics"}]},
     {"title": "Gewerbe / Handwerk", "name": "craft", "image_url": "/base/images/group_icons/craft.svg", "groups": [{"capacity": "public", "name": "topics"}]},
     {"title": "Arbeiten", "name": "work", "image_url": "/base/images/group_icons/work.svg", "groups": [{"capacity": "public", "name": "topics"}]}
+],
+
+"organizations": [
+    {"title": "Technische Universität München (TUM)", "name": "technische-universitat-munchen"},
+    {"title": "Lehrstuhl für Geoinformatik", "name": "lehrstuhl-fur-geoinformatik", "groups": [{"capacity": "public", "name": "technische-universitat-munchen"}]},
+    {"title": "Bayerische Vermessungsverwaltung", "name": "bayerische-vermessungsverwaltung"},
+    {"title": "Bayern Innovativ", "name": "bayern-innovativ"},
+    {"title": "Firmen", "name": "firmen"},
+    {"title": "Technologieanbieter", "name": "technologieanbieter"},
+    {"title": "Softwareanbieter", "name": "softwareanbieter", "groups": [{"capacity": "public", "name": "technologieanbieter"}]},
+    {"title": "Hardwareentwickler", "name": "hardwareentwickler", "groups": [{"capacity":"public", "name": "technologieanbieter"}]}
 ]
+}
