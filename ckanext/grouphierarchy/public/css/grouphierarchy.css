@@ -33,7 +33,6 @@
 }
 
 .hero {
-    background: #0065bd url('../base/images/background1.jpg') no-repeat !important;
     background-size: cover !important;
     display: flex !important;
     padding-top: 20px !important;

@@ -135,7 +135,7 @@ def get_recently_modified_group(_type):
 
 def get_names_in_main_category():
     data = get_init_data()
-    get_all_groups = [group for group in data if group.get('groups')]
+    get_all_groups = [group for group in data['groups'] if group.get('groups')]
     get_all_groups_in_main = (
         [group['name'] for group in get_all_groups 
         if group.get('groups')[0]['name'] == 'main-categories']
