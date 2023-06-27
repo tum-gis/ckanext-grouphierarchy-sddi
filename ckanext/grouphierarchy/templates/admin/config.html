@@ -1,0 +1,33 @@
+{% ckan_extends %}
+
+{% import 'macros/form.html' as form %}
+
+{% block admin_form %}
+
+    {{ form.input('ckan.site_title', id='field-ckan-site-title', label=_('Site Title'), value=data['ckan.site_title'], error=error, classes=['control-medium']) }}
+
+    {{ form.select('ckan.theme', id='field-ckan-main-css', label=_('Style'), options=styles, selected=data['ckan.theme'], error=error) }}
+
+    {{ form.input('ckan.site_description', id='field-ckan-site-description', label=_('Site Tag Line'), value=data['ckan.site_description'], error=error, classes=['control-medium']) }}
+
+    {% set field_url = 'ckan.site_logo' %}
+    {% set is_upload = data[field_url] and not data[field_url].startswith('http') %}
+    {% set is_url = data[field_url] and data[field_url].startswith('http') %}
+    {{ form.image_upload(data, errors, is_upload_enabled=h.uploads_enabled(), is_url=is_url, is_upload=is_upload, upload_label = _('Site logo'), url_label=_('Site logo'),  field_url=field_url, field_upload='logo_upload', field_clear='clear_logo_upload' )}}
+
+    {{ form.markdown('ckan.site_about', id='field-ckan-site-about', label=_('About'), value=data['ckan.site_about'], error=error, placeholder=_('About page text')) }}
+
+    {{ form.markdown('ckan.site_intro_text', id='field-ckan-site-intro-text', label=_('Intro Text'), value=data['ckan.site_intro_text'], error=error, placeholder=_('Text on home page')) }}
+
+    {{ form.markdown('ckan.site_intro_paragraph', id='field-ckan-site-intro-paragraph', label=_('Intro Paragraph'), value=data['ckan.site_intro_paragraph'], error=error, placeholder=_('Paragraph on home page')) }}
+
+    {% set background_image = 'ckan.background_image' %}
+    {% set _is_upload = data[background_image] and not data[background_image].startswith('http') %}
+    {% set _is_url = data[background_image] and data[background_image].startswith('http') %}
+    {{ form.image_upload(data, errors, is_upload_enabled=h.uploads_enabled(), is_url=_is_url, is_upload=_is_upload, upload_label = _('Background image'), url_label=_('Background Image'),  field_url=background_image, field_upload='logo_upload', field_clear='clear_logo_upload')}}
+
+    {{ form.textarea('ckan.site_custom_css', id='field-ckan-site-custom-css', label=_('Custom CSS'), value=data['ckan.site_custom_css'], error=error, placeholder=_('Customisable css inserted into the page header')) }}
+
+    {{ form.select('ckan.homepage_style', id='field-homepage-style', label=_('Homepage'), options=homepages, selected=data['ckan.homepage_style'], error=error) }}
+
+{% endblock admin_form %}
