@@ -24,7 +24,7 @@
     {% set background_image = 'ckan.background_image' %}
     {% set _is_upload = data[background_image] and not data[background_image].startswith('http') %}
     {% set _is_url = data[background_image] and data[background_image].startswith('http') %}
-    {{ form.image_upload(data, errors, is_upload_enabled=h.uploads_enabled(), is_url=_is_url, is_upload=_is_upload, upload_label = _('Background image'), url_label=_('Background Image'),  field_url=background_image, field_upload='logo_upload', field_clear='clear_logo_upload')}}
+    {{ form.image_upload(data, errors, is_upload_enabled=h.uploads_enabled(), is_url=_is_url, is_upload=_is_upload, upload_label = _('Background image'), url_label=_('Background Image'),  field_url=background_image, field_upload='image_upload', field_clear='clear_image_upload')}}
 
     {{ form.textarea('ckan.site_custom_css', id='field-ckan-site-custom-css', label=_('Custom CSS'), value=data['ckan.site_custom_css'], error=error, placeholder=_('Customisable css inserted into the page header')) }}
 

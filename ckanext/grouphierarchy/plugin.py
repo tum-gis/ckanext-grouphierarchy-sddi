@@ -34,8 +34,9 @@ class HierarchySDDIDisplay(p.SingletonPlugin):
     def get_actions(self):
         return {
             "group_tree_children_g": action.group_tree_children_g,
-            "user_create": action.user_create
-            }
+            "user_create": action.user_create,
+            'config_option_update': action.config_option_update
+        }
 
     def update_config_schema(self, schema):
         ignore_missing = p.toolkit.get_validator(u'ignore_missing')
@@ -44,6 +45,8 @@ class HierarchySDDIDisplay(p.SingletonPlugin):
         schema.update({
             u'ckan.site_intro_paragraph': [ignore_missing, unicode_safe],
             u'ckan.background_image': [ignore_missing, unicode_safe],
+            u'image_upload': [ignore_missing, unicode_safe],
+            u'clear_image_upload': [ignore_missing, unicode_safe],
         })
         return schema
 
