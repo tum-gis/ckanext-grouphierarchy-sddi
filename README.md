@@ -1,11 +1,9 @@
-# ckanext-grouphierarchy - group hierarchy for CKAN
-
-This CKAN extension is intended to be used in combination with the [SDDI CKAN Docker container](https://github.com/tum-gis/SDDI-CKAN-Docker).
-
+# ckanext-grouphierarchy
 ## Overview
+This extension based on the [ckanext-hierarchy](https://github.com/ckan/ckanext-hierarchy) extension.
 
-Provides a new field on the group edit form to select a parent
-group. This new hierarchical arrangement of groups is displayed
+
+The `ckanext-grouphierarchy` provides a new field on the group edit form to select a parent group. This new hierarchical arrangement of groups is displayed
 using templates in this extension, instead of the usual list. An group
 page also displays the section of the tree.
 This version (0.2) of this extension also supports the group labeling on the dataset page and on the search page where the datasets are listed. Please note the labeling is only for the main group [id='main-categories'] including 9 sub-groups/children. 
@@ -45,9 +43,66 @@ For example, you may add next field:
 }
 ```
 
-## Compatibility
+## Functionality
 
-This extension has been tested with CKAN v2.8.0 or later. 
+### Main Categories and Topics
+With the extension by default it will be installed two parent Groups and their children groups:
+* Main Category / Hauptkategorie:
+  * Datensatz und Dokumente
+  * Digitaler Zwilling
+  * Geoobjekt
+  * Gerät / Ding
+  * Methode
+  * Online-Anwendung
+  * Online-Dienst
+  * Projekt
+  * Software
+* Topics / Themen:
+  * Arbeiten
+  * Bauen
+  * Bildung
+  * Energie
+  * Gesundheit
+  * Gewerbe / Handwerk
+  * Handel
+  * Informations-Technologie
+  * Kultur
+  * Landwirtschaft
+  * Mobilität
+  * Stadtplanung
+  * Tourismus & Freizeit
+  * Umwelt
+  * Verwaltung
+  * Wohnen
+
+The following image is showing how is it realised in the catalog.
+
+![Alt text](categorie-1.png)
+
+With extension default main categories, topics and organisations which are going to be installed are possible to find in this file: 
+`https://github.com/tum-gis/ckanext-grouphierarchy-sddi/blob/main/ckanext/grouphierarchy/init_data.json`
+
+### Personalisation
+
+The personalization of the SDDI CKAN catalog can be done either via variables or later in the running instance .
+1. Personalisation via variables:
+- The configuration which are enabling perionalization should be added in the `production.ini`. For example:
+    ```
+    ckan.site_intro_paragraph = "This is the intro to my CKAN instance."
+    ckan.background_image = ../base/images/hero.jpg 
+    ckan.site_intro_text = "Willkommen auf der Katalogplattform der Smarten     Städte und Regionen Bayern."
+- For `ckan.background_image` the URL of the image could be used.
+
+2. Personalisation in the running instance:
+- Only user with `Admin` rights can change and apply perionalization settings
+This settings are possible to find in the `config` tab of `Systemadmin settings` (As shown in the following image)
+
+![Alt text](image.png)
+
+In `config` tab is possible to change the Intro text on main page of your running instance (`Intro Text`), Paragraph under intro text on main page (`Intro Paragraph`) and to add or upload the background image in the main page (`Background image`).
+### Compatibility
+
+This extension has been tested with CKAN v2.8.0, CKAN v2.9.0 or later.
 
 ## Installation
 
@@ -62,8 +117,6 @@ should come before form_group
 ```
 ckan.plugins = stats text_view recline_view ... display_group form_group
 ```
-
-Important: This Extension only works if you have the parent groups "main-categories" ("Hauptkategorien") and "topics" ("Themen"). You will get an error if you do not use these groups.
 
 ## Copyright & Licence
 
