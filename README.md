@@ -77,7 +77,8 @@ With the extension by default it will be installed two parent Groups and their c
 
 The following image is showing how is it realised in the catalog.
 
-![Alt text](categorie-1.png)
+![categorie-1](https://github.com/tum-gis/ckanext-grouphierarchy-sddi/assets/93824048/854d1a78-3bbf-42cf-b153-2225d59e28d4)
+
 
 With extension default main categories, topics and organisations which are going to be installed are possible to find in this file: 
 `https://github.com/tum-gis/ckanext-grouphierarchy-sddi/blob/main/ckanext/grouphierarchy/init_data.json`
