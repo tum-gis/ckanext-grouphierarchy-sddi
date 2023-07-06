@@ -88,9 +88,9 @@ The personalization of the SDDI CKAN catalog can be done either via variables or
 1. Personalisation via variables:
 - The configuration which are enabling perionalization should be added in the `production.ini`. For example:
     ```
-    ckan.site_intro_paragraph = "This is the intro to my CKAN instance."
+    ckan.site_intro_paragraph = "Here is example for Intro Paragraph"
     ckan.background_image = ../base/images/hero.jpg 
-    ckan.site_intro_text = "Willkommen auf der Katalogplattform der Smarten     Städte und Regionen Bayern."
+    ckan.site_intro_text = "Here is example for Intro Text."
 With the `ckan.site_intro_paragraph` is possible to define intro paragraph text on the main page, `ckan.background_image` is defining the background image on the main page, `ckan.site_intro_text`is defining the intro text on the main page.
 
 ![variables](https://github.com/tum-gis/ckanext-grouphierarchy-sddi/assets/93824048/4c309aa3-dd0d-4bdd-9b86-bf80ca916ce1)
