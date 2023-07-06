@@ -122,7 +122,7 @@ $ . /usr/lib/ckan/default/bin/activate
 Then change your CKAN ini file (e.g. development.ini or production.ini).  Note that display_group
 should come before form_group
 ```
-ckan.plugins = stats text_view recline_view ... display_group form_group
+ckan.plugins = stats text_view recline_view ... display_group
 ```
 
 ## Copyright & Licence
