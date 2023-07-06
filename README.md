@@ -91,15 +91,21 @@ The personalization of the SDDI CKAN catalog can be done either via variables or
     ckan.site_intro_paragraph = "This is the intro to my CKAN instance."
     ckan.background_image = ../base/images/hero.jpg 
     ckan.site_intro_text = "Willkommen auf der Katalogplattform der Smarten     Städte und Regionen Bayern."
-- For `ckan.background_image` the URL of the image could be used.
+With the `ckan.site_intro_paragraph` is possible to define intro paragraph text on the main page, `ckan.background_image` is defining the background image on the main page, `ckan.site_intro_text`is defining the intro text on the main page.
+
+![variables](https://github.com/tum-gis/ckanext-grouphierarchy-sddi/assets/93824048/4c309aa3-dd0d-4bdd-9b86-bf80ca916ce1)
+
+- If the configuration via variables is going to be used, the `ckan.background_image` can be defined ether as a path to the image or as URL.
 
 2. Personalisation in the running instance:
-- Only user with `Admin` rights can change and apply perionalization settings
+- Only user with `Admin` rights can change and apply perionalization settings.
 This settings are possible to find in the `config` tab of `Systemadmin settings` (As shown in the following image)
 
-![Alt text](image.png)
+![Personalisation](https://github.com/tum-gis/ckanext-grouphierarchy-sddi/assets/93824048/1df24bd5-a66d-4fd7-8195-6abcf0cf98d7)
 
-In `config` tab is possible to change the Intro text on main page of your running instance (`Intro Text`), Paragraph under intro text on main page (`Intro Paragraph`) and to add or upload the background image in the main page (`Background image`).
+As shown on the image, in In `config` tab is possible to change the Intro text on main page of your running instance (`Intro Text`), Paragraph under intro text on main page (`Intro Paragraph`) and to add or upload the background image in the main page (`Background image`).
+If the (`Background image`) is not defined (as in this example), it will be used the `hero.jpg` image (`ckanext-grouphierarchy-sddi/ckanext/grouphierarchy/public/base/images/hero.jpg`).
+
 ### Compatibility
 
 This extension has been tested with CKAN v2.8.0, CKAN v2.9.0 or later.
