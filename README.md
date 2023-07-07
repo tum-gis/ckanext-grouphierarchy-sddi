@@ -83,6 +83,21 @@ The following image is showing how is it realised in the catalog.
 With extension default main categories, topics and organisations which are going to be installed are possible to find in this file: 
 `https://github.com/tum-gis/ckanext-grouphierarchy-sddi/blob/main/ckanext/grouphierarchy/init_data.json`
 
+The file is possible to define in `production.ini` as a variable:
+```
+ckan.grouphierarchy.init_data=ckanext/grouphierarchy/name_init_data_file.json
+```
+
+The `init_data.json`file needs to have structure as in the following example:
+
+```{"organizations": [
+    {"title": "Parent Organisation Name", "name": "parent-organisation", "image_url": "/base/images/organisation_icons/parent-organisation_logo.png"},
+    {"title": "Child Organisation name", "name": "child-organisation", "image_url": "/base/images/organisation_icons/child-organisation_logo.png", "groups": [{"capacity": "public", "name": "parent-organisation"}]}
+	]
+	}
+```
+
+
 ### Personalisation
 
 The personalization of the SDDI CKAN catalog can be done either via variables or later in the running instance .
