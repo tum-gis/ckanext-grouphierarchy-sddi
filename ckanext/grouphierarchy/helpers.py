@@ -1,10 +1,13 @@
+import os
+import json
+import requests
+
 import ckan.model as model
-
 from ckan.plugins import toolkit as tk
-
 from ckanext.hierarchy import helpers
 
 
+HERE = os.path.dirname(__file__)
 # def groups():
 #     query = model.Group.all(group_type='group')
 
@@ -109,7 +112,7 @@ def get_recently_modified_group(_type):
     num = int(tk.config.get("ckanext.grouphierachy.homepage.group_show", 4))
 
     allowed_groups = get_names_in_main_category()
-    action = f'{_type}_list'
+    action = f"{_type}_list"
     groups = tk.get_action(action)(
         {},
         {
@@ -133,27 +136,50 @@ def get_recently_modified_group(_type):
     return sorted_groups[:num]
 
 
-def get_names_in_main_category():
-    data = get_init_data()
-    get_all_groups = [group for group in data['groups'] if group.get('groups')]
-    get_all_groups_in_main = (
-        [group['name'] for group in get_all_groups 
-        if group.get('groups')[0]['name'] == 'main-categories']
-    )
-    return get_all_groups_in_main
-
-
 def get_init_data():
-    import os
-    import json
-
-    HERE = os.path.dirname(__file__)
     # ckanext.grouphierarchy.init_data = example.json
     # make sure the .json file is inside grouphierarchy directory,
     # otherwise it won't work
     # if the .json file is not set in the .ini it would fall to the default one
     filepath = tk.config.get("ckanext.grouphierarchy.init_data", "init_data.json")
-    with open(os.path.join(HERE, filepath), encoding='utf-8') as f:
-        data = json.load(f)
+
+    if tk.h.is_url(filepath):
+        url = filepath
+        response = requests.get(url)
+
+        if response.status_code == 200:
+            if is_github_url(url):
+                content = response.json()['payload']['blob']['rawBlob']
+                data = json.loads(content)
+            else:
+                data = response.json()
+
+    else:
+        with open(os.path.join(HERE, filepath), encoding="utf-8") as f:
+            data = json.load(f)
 
     return data
+
+
+def get_names_in_main_category():
+    session = model.Session
+    query = session.execute("SELECT id from \"group\" where name='main-categories'")
+    result = query.scalar()
+
+    query = session.execute(
+        f'select name from "group" INNER JOIN member on "group".id=member.group_id where member.table_id=\'{result}\''
+    )
+    resultproxy = query.fetchall()
+
+    data_dict = {}
+    for rowproxy in resultproxy:
+        group_name = rowproxy[0]
+        data_dict.setdefault("name", []).append(group_name)
+
+    return data_dict.get("names")
+
+
+def is_github_url(url):
+    from urllib.parse import urlparse
+    parsed_url = urlparse(url)
+    return parsed_url.netloc.endswith('github.com')
