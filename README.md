@@ -122,6 +122,11 @@ This settings are possible to find in the `config` tab of `Systemadmin settings`
 As shown on the image, in In `config` tab is possible to change the Intro text on main page of your running instance (`Intro Text`), Paragraph under intro text on main page (`Intro Paragraph`) and to add or upload the background image in the main page (`Background image`).
 If the (`Background image`) is not defined (as in this example), it will be used the `hero.jpg` image (`ckanext-grouphierarchy-sddi/ckanext/grouphierarchy/public/base/images/hero.jpg`).
 
+By default, the intro text is defined as `ckan.site_intro_text="This is the intro to my CKAN instance."`. The `ckan.site_intro_paragraph` is not defined. For background image  `hero.png` is used with the default location `https://github.com/tum-gis/ckanext-grouphierarchy-sddi/blob/main/ckanext/grouphierarchy/public/base/images/hero.jpg`
+In the following image is possible to see the main page of one running instance with default settings
+![image](https://github.com/tum-gis/ckanext-grouphierarchy-sddi/assets/93824048/801a2685-9398-4f13-b881-a14a2eb25bb5)
+
+
 ### Compatibility
 
 This extension has been tested with CKAN v2.8.0, CKAN v2.9.0 or later.
