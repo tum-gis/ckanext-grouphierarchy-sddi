@@ -46,7 +46,7 @@ For example, you may add next field:
 ## Functionality
 
 ### Main Categories and Topics
-With the extension by default it will be installed two parent Groups and their children groups:
+With the extension by default, it will be installed two parent Groups and their children groups:
 * Main Category / Hauptkategorie:
   * Datensatz und Dokumente
   * Digitaler Zwilling
@@ -75,30 +75,53 @@ With the extension by default it will be installed two parent Groups and their c
   * Verwaltung
   * Wohnen
 
-The following image is showing how is it realised in the catalog.
+The following image is showing how is it realized in the catalog.
 
 ![categorie-1](https://github.com/tum-gis/ckanext-grouphierarchy-sddi/assets/93824048/854d1a78-3bbf-42cf-b153-2225d59e28d4)
 
 
-With extension default main categories, topics and organisations which are going to be installed are possible to find in this file: 
+With extension default main categories, topics, and organisations which are going to be installed are possible to find in this file: 
 `https://github.com/tum-gis/ckanext-grouphierarchy-sddi/blob/main/ckanext/grouphierarchy/init_data.json`
 
 The file is possible to define in `production.ini` as a variable:
 ```
-ckan.grouphierarchy.init_data=ckanext/grouphierarchy/name_init_data_file.json
+ckanext.grouphierarchy.init_data=name_init_data_file.json
 ```
+or
+```
+ckanext.grouphierarchy.init_data= `url to your .json file`
+```
+The `init_data.json`file is by default located in `ckanext-grouphierarchy-sddi/ckanext/grouphierarchy/` and this file is going to be used by default. If on the same location are two `.json` files with the same structure, the variable will require just the name of the `.json` file which should be used for further installation.
 
-The `init_data.json`file needs to have structure as in the following example:
+The `.json` file must have the following structure:
+```
+{"groups": [
+    {"title": "Hauptkategorien", "name": "main-categories"},
+    {"title": "Category 1", "name": "category1", "image_url": "/base/images/group_icons/category1-logo.jpg", "groups": [{"capacity": "public", "name": "main-categories"}]},
 
-```{"organizations": [
-    {"title": "Parent Organisation Name", "name": "parent-organisation", "image_url": "/base/images/organisation_icons/parent-organisation_logo.png"},
-    {"title": "Child Organisation name", "name": "child-organisation", "image_url": "/base/images/organisation_icons/child-organisation_logo.png", "groups": [{"capacity": "public", "name": "parent-organisation"}]}
+    {"title": "Themen", "name": "topics"},
+    {"title": "Topic 1", "name": "topic1", "image_url": "/base/images/group_icons/topic1-logo.svg", "groups": [{"capacity": "public", "name": "topics"}]}
+]
+
+"organizations": [
+    {"title": "Parent Organisation", "name": "parent-organisation", "image_url": "/base/images/organisation_icons/parent-organisation_logo.png"},
+]
+}
+```
+Personalized `.json`file must contains `"groups": [ "Hauptkategorien", "Themen" ]` and `"organizations": []`
+
+To have parent/child relations between organizations, the structure must be as in the following example:
+
+```
+{"organizations": [
+    {"title": "Parent Organisation", "name": "parent-organisation", "image_url": "/base/images/organisation_icons/parent-organisation_logo.png"},
+    {"title": "Child Organisation", "name": "child-organisation", "image_url": "/base/images/organisation_icons/child-organisation_logo.png", "groups": [{"capacity": "public", "name": "parent-organisation"}]}
 	]
 	}
 ```
 
 
-### Personalisation
+### Main Page Personalisation
 
 The personalization of the SDDI CKAN catalog can be done either via variables or later in the running instance .
 1. Personalisation via variables:
