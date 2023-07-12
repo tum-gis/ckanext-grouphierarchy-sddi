@@ -1,7 +1,7 @@
 # ckanext-grouphierarchy
 ## Overview
 This extension based on the [ckanext-hierarchy](https://github.com/ckan/ckanext-hierarchy) extension.
-
+The `ckanext-grouphierarchy-sddi`extension **requires** [ckanext-hierarchy](https://github.com/ckan/ckanext-hierarchy) extension. The `ckanext-grouphierarchy-sddi`extension is tested with v1.2.0 of the [ckanext-hierarchy](https://github.com/ckan/ckanext-hierarchy) extension.
 
 The `ckanext-grouphierarchy` provides a new field on the group edit form to select a parent group. This new hierarchical arrangement of groups is displayed
 using templates in this extension, instead of the usual list. An group
@@ -80,8 +80,7 @@ The following image is showing how is it realized in the catalog.
 ![categorie-1](https://github.com/tum-gis/ckanext-grouphierarchy-sddi/assets/93824048/854d1a78-3bbf-42cf-b153-2225d59e28d4)
 
 
-With extension default main categories, topics, and organisations which are going to be installed are possible to find in this file: 
-`https://github.com/tum-gis/ckanext-grouphierarchy-sddi/blob/main/ckanext/grouphierarchy/init_data.json`
+The `init_data.json`file is by default located in `ckanext-grouphierarchy-sddi/ckanext/grouphierarchy/` and this file is going to be used for installation of default main categories, topics, and organisations. By default, there are 9 main categories, 16 topics and 18 Organizations. In the following `.json`file you can see default values: `https://github.com/tum-gis/ckanext-grouphierarchy-sddi/blob/main/ckanext/grouphierarchy/init_data.json`.
 
 The file is possible to define in `production.ini` as a variable:
 ```
@@ -89,26 +88,32 @@ ckanext.grouphierarchy.init_data=name_init_data_file.json
 ```
 or
 ```
-ckanext.grouphierarchy.init_data= `url to your .json file`
+ckanext.grouphierarchy.init_data= `url to your json file`
 ```
-The `init_data.json`file is by default located in `ckanext-grouphierarchy-sddi/ckanext/grouphierarchy/` and this file is going to be used by default. If on the same location are two `.json` files with the same structure, the variable will require just the name of the `.json` file which should be used for further installation.
+If on the same location (`ckanext-grouphierarchy-sddi/ckanext/grouphierarchy/`) are two `.json` files with the same structure, the variable will require just the name of the `.json` file which should be used for further installation.
+Exp:
+```
+ckanext.grouphierarchy.init_data= my-custom_file.json
+```
 
-The `.json` file must have the following structure:
+It could be used Web-URL directing to `.json`file.
+
+The `.json` file **must** have the following structure:
 ```
 {"groups": [
     {"title": "Hauptkategorien", "name": "main-categories"},
-    {"title": "Category 1", "name": "category1", "image_url": "/base/images/group_icons/category1-logo.jpg", "groups": [{"capacity": "public", "name": "main-categories"}]},
+    {"title": "Category 1", "name": "category1", "groups": [{"capacity": "public", "name": "main-categories"}]},
 
     {"title": "Themen", "name": "topics"},
-    {"title": "Topic 1", "name": "topic1", "image_url": "/base/images/group_icons/topic1-logo.svg", "groups": [{"capacity": "public", "name": "topics"}]}
+    {"title": "Topic 1", "name": "topic1", "groups": [{"capacity": "public", "name": "topics"}]}
 ]
 
 "organizations": [
-    {"title": "Parent Organisation", "name": "parent-organisation", "image_url": "/base/images/organisation_icons/parent-organisation_logo.png"},
+    {"title": " Organisation", "name": "organisation"},
 ]
 }
 ```
-Personalized `.json`file must contains `"groups": [ "Hauptkategorien", "Themen" ]` and `"organizations": []`
+Personalized `.json`file **must contain** `"groups": [ "Hauptkategorien", "Themen" ]`. Value `"organizations": []` can be optionally.
 
 To have parent/child relations between organizations, the structure must be as in the following example:
 
@@ -119,7 +124,13 @@ To have parent/child relations between organizations, the structure must be as i
 	]
 	}
 ```
+The values which have to be filled in have the following interpretation:
+- `title`is presenting titel of the main category/topic/organisation which is going to be shown in the running instance
+- `name` is defining the name od the main category/topic/organisation  which is going to be stored in database and for defyning URL of the dataset
+- `image_url`is defining location where the logo of the main category/topic/organisation is. This is optional value.
+- `"groups": [{"capacity": "public", "name": "parent-organisation"}]` - if the main category/topic/organisation needs to be defined as child, here should be defined parent `name`. This value is required only for parent-child relation.
 
+The `init_data.json`is loaded at first initialization of a fresh instance. If is required to change values defined in `init_data.json` the "old" values should be first removed from the database.
 
 ### Main Page Personalisation
 
