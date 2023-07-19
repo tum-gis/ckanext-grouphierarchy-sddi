@@ -84,7 +84,7 @@ The following image is showing how is it realized in the catalog.
 
 ![categorie-1](https://github.com/tum-gis/ckanext-grouphierarchy-sddi/assets/93824048/854d1a78-3bbf-42cf-b153-2225d59e28d4)
 
-The `init_data.json`file is by default located in `ckanext-grouphierarchy-sddi/ckanext/grouphierarchy/` and this file is going to be used for installation of default main categories, topics, and organisations. By default, there are 9 main categories, 16 topics and 18 Organizations. In the following `.json`file you can see default values: `https://github.com/tum-gis/ckanext-grouphierarchy-sddi/blob/main/ckanext/grouphierarchy/init_data.json`.
+The `init_data.json` file is by default located in `ckanext-grouphierarchy-sddi/ckanext/grouphierarchy/` and this file is going to be used for installation of default main categories, topics, and organisations. By default, there are 9 main categories, 16 topics and 18 Organizations. In the following `.json` file you can see default values: `https://github.com/tum-gis/ckanext-grouphierarchy-sddi/blob/main/ckanext/grouphierarchy/init_data.json`.
 
 The file is possible to define in `production.ini` as a variable:
 
@@ -105,7 +105,7 @@ Exp:
 ckanext.grouphierarchy.init_data= my-custom_file.json
 ```
 
-It could be used Web-URL directing to `.json`file.
+It could be used Web-URL directing to `.json` file.
 
 The `.json` file **must** have the following structure:
 
@@ -150,7 +150,7 @@ The `.json` file **must** have the following structure:
 }
 ```
 
-Personalized `.json`file **must contain** `"groups": [ "Hauptkategorien", "Themen" ]`. Value `"organizations": []` can be optionally.
+Personalized `.json` file **must contain** `"groups": [ "Hauptkategorien", "Themen" ]`. Value `"organizations": []` can be optionally.
 
 To have parent/child relations between organizations, the structure must be as in the following example:
 
@@ -179,15 +179,15 @@ To have parent/child relations between organizations, the structure must be as i
 
 The values which have to be filled in have the following interpretation:
 
-* `title`is presenting titel of the main category/topic/organisation which is going to be shown in the running instance
+* `title` is presenting titel of the main category/topic/organisation which is going to be shown in the running instance
 
 * `name` is defining the name od the main category/topic/organisation  which is going to be stored in database and for defyning URL of the dataset
 
-* `image_url`is defining location where the logo of the main category/topic/organisation is. This is optional value.
+* `image_url` is defining location where the logo of the main category/topic/organisation is. This is optional value.
 
 * `"groups": [{"capacity": "public", "name": "parent-organisation"}]` - if the main category/topic/organisation needs to be defined as child, here should be defined parent `name`. This value is required only for parent-child relation.
 
-The `init_data.json`is loaded at first initialization of a fresh instance. If is required to change values defined in `init_data.json` the "old" values should be first removed from the database.
+The `init_data.json` is loaded at first initialization of a fresh instance. If is required to change values defined in `init_data.json` the "old" values should be first removed from the database.
 
 ### Main Page Personalisation
 
@@ -200,7 +200,7 @@ The personalization of the SDDI CKAN catalog can be done either via variables or
        ckan.background_image = ../base/images/hero.jpg
        ckan.site_intro_text = "Here is example for Intro Text."
 
-With the `ckan.site_intro_paragraph` is possible to define intro paragraph text on the main page, `ckan.background_image` is defining the background image on the main page, `ckan.site_intro_text`is defining the intro text on the main page.
+With the `ckan.site_intro_paragraph` is possible to define intro paragraph text on the main page, `ckan.background_image` is defining the background image on the main page, `ckan.site_intro_text` is defining the intro text on the main page.
 
 ![variables](https://github.com/tum-gis/ckanext-grouphierarchy-sddi/assets/93824048/4c309aa3-dd0d-4bdd-9b86-bf80ca916ce1)
 
