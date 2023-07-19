@@ -6,21 +6,23 @@ The `ckanext-grouphierarchy-sddi`extension **requires** [ckanext-hierarchy](http
 The `ckanext-grouphierarchy` provides a new field on the group edit form to select a parent group. This new hierarchical arrangement of groups is displayed
 using templates in this extension, instead of the usual list. An group
 page also displays the section of the tree.
-This version (0.2) of this extension also supports the group labeling on the dataset page and on the search page where the datasets are listed. Please note the labeling is only for the main group [id='main-categories'] including 9 sub-groups/children. 
+This version (0.2) of this extension also supports the group labeling on the dataset page and on the search page where the datasets are listed. Please note the labeling is only for the main group [id='main-categories'] including 9 sub-groups/children.
 
 Forms (hierachy_form plugin):
+
 * /group/new
 * /group/edit/{id}
 
 Templates (hierarchy_display plugin):
+
 * /group - now shows the group hierarchy instead of list
 * /group/about/{id} - now also shows the relevant part of the hierarchy
 
 Please note that the categories of groups are hard coded.
 github.com/tum-gis/ckanext-grouphierarchy-sddi/blob/master/ckanext/grouphierarchy/templates/group/snippets/group_list.html
 
-
 Snippets (used by hierarchy_display and ckanext-scheming):
+
 * /scheming/form_snippets/group_hierarchy.html
 
 You can use this extension with CKAN as it is, enabling both plugins. Or if you
@@ -33,7 +35,8 @@ trees.
 In order to make hierarchy works with ckanext-scheming you need to enable just
 hierarchy_display and then use corresponding form_snippet in your org_schema.
 For example, you may add next field:
-```
+
+```json
 {
     "field_name": "not_used",
     "label": "Parent group",
@@ -46,7 +49,9 @@ For example, you may add next field:
 ## Functionality
 
 ### Main Categories and Topics
+
 With the extension by default, it will be installed two parent Groups and their children groups:
+
 * Main Category / Hauptkategorie:
   * Datensatz und Dokumente
   * Digitaler Zwilling
@@ -79,56 +84,108 @@ The following image is showing how is it realized in the catalog.
 
 ![categorie-1](https://github.com/tum-gis/ckanext-grouphierarchy-sddi/assets/93824048/854d1a78-3bbf-42cf-b153-2225d59e28d4)
 
-
 The `init_data.json`file is by default located in `ckanext-grouphierarchy-sddi/ckanext/grouphierarchy/` and this file is going to be used for installation of default main categories, topics, and organisations. By default, there are 9 main categories, 16 topics and 18 Organizations. In the following `.json`file you can see default values: `https://github.com/tum-gis/ckanext-grouphierarchy-sddi/blob/main/ckanext/grouphierarchy/init_data.json`.
 
 The file is possible to define in `production.ini` as a variable:
-```
+
+```text
 ckanext.grouphierarchy.init_data=name_init_data_file.json
 ```
+
 or
-```
+
+```text
 ckanext.grouphierarchy.init_data= `url to your json file`
 ```
+
 If on the same location (`ckanext-grouphierarchy-sddi/ckanext/grouphierarchy/`) are two `.json` files with the same structure, the variable will require just the name of the `.json` file which should be used for further installation.
 Exp:
-```
+
+```text
 ckanext.grouphierarchy.init_data= my-custom_file.json
 ```
 
 It could be used Web-URL directing to `.json`file.
 
 The `.json` file **must** have the following structure:
-```
-{"groups": [
-    {"title": "Hauptkategorien", "name": "main-categories"},
-    {"title": "Category 1", "name": "category1", "groups": [{"capacity": "public", "name": "main-categories"}]},
 
-    {"title": "Themen", "name": "topics"},
-    {"title": "Topic 1", "name": "topic1", "groups": [{"capacity": "public", "name": "topics"}]}
-]
-
-"organizations": [
-    {"title": " Organisation", "name": "organisation"},
-]
+```json
+{
+    "groups": [
+        {
+            "title": "Hauptkategorien",
+            "name": "main-categories"
+        },
+        {
+            "title": "Category 1",
+            "name": "category1",
+            "groups": [
+                {
+                    "capacity": "public",
+                    "name": "main-categories"
+                }
+            ]
+        },
+        {
+            "title": "Themen",
+            "name": "topics"
+        },
+        {
+            "title": "Topic 1",
+            "name": "topic1",
+            "groups": [
+                {
+                    "capacity": "public",
+                    "name": "topics"
+                }
+            ]
+        }
+    ],
+    "organizations": [
+        {
+            "title": " Organisation",
+            "name": "organisation"
+        }
+    ]
 }
 ```
+
 Personalized `.json`file **must contain** `"groups": [ "Hauptkategorien", "Themen" ]`. Value `"organizations": []` can be optionally.
 
 To have parent/child relations between organizations, the structure must be as in the following example:
 
+```json
+{
+    "organizations": [
+        {
+            "title": "Parent Organisation",
+            "name": "parent-organisation",
+            "image_url": "/base/images/organisation_icons/parent-organisation_logo.png"
+        },
+        {
+            "title": "Child Organisation",
+            "name": "child-organisation",
+            "image_url": "/base/images/organisation_icons/child-organisation_logo.png",
+            "groups": [
+                {
+                    "capacity": "public",
+                    "name": "parent-organisation"
+                }
+            ]
+        }
+    ]
+}
 ```
-{"organizations": [
-    {"title": "Parent Organisation", "name": "parent-organisation", "image_url": "/base/images/organisation_icons/parent-organisation_logo.png"},
-    {"title": "Child Organisation", "name": "child-organisation", "image_url": "/base/images/organisation_icons/child-organisation_logo.png", "groups": [{"capacity": "public", "name": "parent-organisation"}]}
-	]
-	}
-```
+
 The values which have to be filled in have the following interpretation:
-- `title`is presenting titel of the main category/topic/organisation which is going to be shown in the running instance
-- `name` is defining the name od the main category/topic/organisation  which is going to be stored in database and for defyning URL of the dataset
-- `image_url`is defining location where the logo of the main category/topic/organisation is. This is optional value.
-- `"groups": [{"capacity": "public", "name": "parent-organisation"}]` - if the main category/topic/organisation needs to be defined as child, here should be defined parent `name`. This value is required only for parent-child relation.
+
+* `title`is presenting titel of the main category/topic/organisation which is going to be shown in the running instance
+
+* `name` is defining the name od the main category/topic/organisation  which is going to be stored in database and for defyning URL of the dataset
+
+* `image_url`is defining location where the logo of the main category/topic/organisation is. This is optional value.
+
+* `"groups": [{"capacity": "public", "name": "parent-organisation"}]` - if the main category/topic/organisation needs to be defined as child, here should be defined parent `name`. This value is required only for parent-child relation.
 
 The `init_data.json`is loaded at first initialization of a fresh instance. If is required to change values defined in `init_data.json` the "old" values should be first removed from the database.
 
@@ -136,30 +193,32 @@ The `init_data.json`is loaded at first initialization of a fresh instance. If is
 
 The personalization of the SDDI CKAN catalog can be done either via variables or later in the running instance .
 1. Personalisation via variables:
-- The configuration which are enabling perionalization should be added in the `production.ini`. For example:
-    ```
-    ckan.site_intro_paragraph = "Here is example for Intro Paragraph"
-    ckan.background_image = ../base/images/hero.jpg 
-    ckan.site_intro_text = "Here is example for Intro Text."
+
+   * The configuration which are enabling personalization should be added in the `production.ini`. For example:
+       ```
+       ckan.site_intro_paragraph = "Here is example for Intro Paragraph"
+       ckan.background_image = ../base/images/hero.jpg
+       ckan.site_intro_text = "Here is example for Intro Text."
+
 With the `ckan.site_intro_paragraph` is possible to define intro paragraph text on the main page, `ckan.background_image` is defining the background image on the main page, `ckan.site_intro_text`is defining the intro text on the main page.
 
 ![variables](https://github.com/tum-gis/ckanext-grouphierarchy-sddi/assets/93824048/4c309aa3-dd0d-4bdd-9b86-bf80ca916ce1)
 
 - If the configuration via variables is going to be used, the `ckan.background_image` can be defined ether as a path to the image or as URL.
 
-2. Personalisation in the running instance:
-- Only user with `Admin` rights can change and apply perionalization settings.
-This settings are possible to find in the `config` tab of `Systemadmin settings` (As shown in the following image)
+1. Personalisation in the running instance:
 
-![Personalisation](https://github.com/tum-gis/ckanext-grouphierarchy-sddi/assets/93824048/1df24bd5-a66d-4fd7-8195-6abcf0cf98d7)
+   * Only user with `Admin` rights can change and apply perionalization settings.
+   This settings are possible to find in the `config` tab of `Systemadmin settings` (As shown in the following image)
 
-As shown on the image, in In `config` tab is possible to change the Intro text on main page of your running instance (`Intro Text`), Paragraph under intro text on main page (`Intro Paragraph`) and to add or upload the background image in the main page (`Background image`).
-If the (`Background image`) is not defined (as in this example), it will be used the `hero.jpg` image (`ckanext-grouphierarchy-sddi/ckanext/grouphierarchy/public/base/images/hero.jpg`).
+    ![Personalisation](https://github.com/tum-gis/ckanext-grouphierarchy-sddi/assets/93824048/1df24bd5-a66d-4fd7-8195-6abcf0cf98d7)
 
-By default, the intro text is defined as `ckan.site_intro_text="This is the intro to my CKAN instance."`. The `ckan.site_intro_paragraph` is not defined. For background image  `hero.png` is used with the default location `https://github.com/tum-gis/ckanext-grouphierarchy-sddi/blob/main/ckanext/grouphierarchy/public/base/images/hero.jpg`
-In the following image is possible to see the main page of one running instance with default settings
-![image](https://github.com/tum-gis/ckanext-grouphierarchy-sddi/assets/93824048/801a2685-9398-4f13-b881-a14a2eb25bb5)
+    As shown on the image, in In `config` tab is possible to change the Intro text on main page of your running instance (`Intro Text`), Paragraph under intro text on main page (`Intro Paragraph`) and to add or upload the background image in the main page (`Background image`).
+    If the (`Background image`) is not defined (as in this example), it will be used the `hero.jpg` image (`ckanext-grouphierarchy-sddi/ckanext/grouphierarchy/public/base/images/hero.jpg`).
 
+    By default, the intro text is defined as `ckan.site_intro_text="This is the intro to my CKAN instance."`. The `ckan.site_intro_paragraph` is not defined. For background image  `hero.png` is used with the default location `https://github.com/tum-gis/ckanext-grouphierarchy-sddi/blob/main/ckanext/grouphierarchy/public/base/images/hero.jpg`
+    In the following image is possible to see the main page of one running instance with default settings
+    ![image](https://github.com/tum-gis/ckanext-grouphierarchy-sddi/assets/93824048/801a2685-9398-4f13-b881-a14a2eb25bb5)
 
 ### Compatibility
 
@@ -167,15 +226,18 @@ This extension has been tested with CKAN v2.8.0, CKAN v2.9.0 or later.
 
 ## Installation
 
-Install the extension in your python environment
-```
+Install the extension in your python environment.
+
+```console
 $ . /usr/lib/ckan/default/bin/activate
 (pyenv) $ cd /usr/lib/ckan/default/src
 (pyenv) $ pip install -e "git+https://tum-gis/ckanext-grouphierarchy-sddi.git#egg=ckanext-grouphierarchy-sddi"
 ```
+
 Then change your CKAN ini file (e.g. development.ini or production.ini).  Note that display_group
 should come before form_group
-```
+
+```text
 ckan.plugins = stats text_view recline_view ... display_group
 ```
 
