@@ -1,7 +1,7 @@
 # ckanext-grouphierarchy
 ## Overview
 This extension based on the [ckanext-hierarchy](https://github.com/ckan/ckanext-hierarchy) extension.
-The `ckanext-grouphierarchy-sddi`extension **requires** [ckanext-hierarchy](https://github.com/ckan/ckanext-hierarchy) extension. The `ckanext-grouphierarchy-sddi`extension is tested with v1.2.0 of the [ckanext-hierarchy](https://github.com/ckan/ckanext-hierarchy) extension.
+The `ckanext-grouphierarchy-sddi` extension **requires** [ckanext-hierarchy](https://github.com/ckan/ckanext-hierarchy) extension. The `ckanext-grouphierarchy-sddi` extension is tested with v1.2.0 of the [ckanext-hierarchy](https://github.com/ckan/ckanext-hierarchy) extension.
 
 The `ckanext-grouphierarchy` provides a new field on the group edit form to select a parent group. This new hierarchical arrangement of groups is displayed
 using templates in this extension, instead of the usual list. An group
@@ -84,28 +84,35 @@ The following image is showing how is it realized in the catalog.
 
 ![categorie-1](https://github.com/tum-gis/ckanext-grouphierarchy-sddi/assets/93824048/854d1a78-3bbf-42cf-b153-2225d59e28d4)
 
-The `init_data.json` file is by default located in `ckanext-grouphierarchy-sddi/ckanext/grouphierarchy/` and this file is going to be used for installation of default main categories, topics, and organisations. By default, there are 9 main categories, 16 topics and 18 Organizations. In the following `.json` file you can see default values: `https://github.com/tum-gis/ckanext-grouphierarchy-sddi/blob/main/ckanext/grouphierarchy/init_data.json`.
+The `init_data.json` file is by default located in `ckanext-grouphierarchy-sddi/ckanext/grouphierarchy/` and this file is going to be used for installation of default main categories, topics, and organisations.
+By default, there are 9 main categories, 16 topics and 18 Organizations. In the following `.json` file you can see default values:
+`https://github.com/tum-gis/ckanext-grouphierarchy-sddi/blob/main/ckanext/grouphierarchy/init_data.json`.
 
 The file is possible to define in `production.ini` as a variable:
 
 ```text
-ckanext.grouphierarchy.init_data=name_init_data_file.json
+ckanext.grouphierarchy.init_data=/path/to/init_data.json
 ```
 
-or
+The default setting is:
 
 ```text
-ckanext.grouphierarchy.init_data= `url to your json file`
+ckanext.grouphierarchy.init_data=init_data.json
 ```
 
-If on the same location (`ckanext-grouphierarchy-sddi/ckanext/grouphierarchy/`) are two `.json` files with the same structure, the variable will require just the name of the `.json` file which should be used for further installation.
-Exp:
+If the file is located in `ckanext-grouphierarchy-sddi/ckanext/grouphierarchy`, just the file name needs to be set, e.g.:
+
+`ckanext-grouphierarchy-sddi/ckanext/grouphierarchy/my_init_data.json`:
 
 ```text
-ckanext.grouphierarchy.init_data= my-custom_file.json
+ckanext.grouphierarchy.init_data=my_init_data.json
 ```
 
-It could be used Web-URL directing to `.json` file.
+The file can also be specified as an URL:
+
+```text
+ckanext.grouphierarchy.init_data=https://url/to/init_data.json
+```
 
 The `.json` file **must** have the following structure:
 
@@ -150,9 +157,9 @@ The `.json` file **must** have the following structure:
 }
 ```
 
-Personalized `.json` file **must contain** `"groups": [ "Hauptkategorien", "Themen" ]`. Value `"organizations": []` can be optionally.
+Personalized `.json` file **must contain** `"groups": [ "Hauptkategorien", "Themen" ]`. `"organizations": []` are optional.
 
-To have parent/child relations between organizations, the structure must be as in the following example:
+To have parent/child relations between organizations, the structure must be as follows:
 
 ```json
 {
@@ -193,7 +200,7 @@ The `init_data.json` is loaded at first initialization of a fresh instance. If i
 
 The personalization of the SDDI CKAN catalog can be done either via variables or later in the running instance.
 
-#### Personalisation via variables:
+#### Personalisation via variables
 
 The configuration which are enabling personalization should be added in the `production.ini`. For example:
 
@@ -212,14 +219,15 @@ If the configuration via variables is going to be used, the `ckan.background_ima
 #### Personalisation in the running instance
 
 Only user with `admin` rights can change and apply perionalization settings.
-This settings are possible to find in the `config` tab of `Systemadmin settings` (As shown in the following image)
+This settings are possible to find in the `config` tab of `Systemadmin settings` (As shown in the following image).
 
 ![Personalisation](https://github.com/tum-gis/ckanext-grouphierarchy-sddi/assets/93824048/1df24bd5-a66d-4fd7-8195-6abcf0cf98d7)
 
 As shown on the image, in In `config` tab is possible to change the Intro text on main page of your running instance (`Intro Text`), Paragraph under intro text on main page (`Intro Paragraph`) and to add or upload the background image in the main page (`Background image`).
 If the (`Background image`) is not defined (as in this example), it will be used the `hero.jpg` image (`ckanext-grouphierarchy-sddi/ckanext/grouphierarchy/public/base/images/hero.jpg`).
 
-By default, the intro text is defined as `ckan.site_intro_text="This is the intro to my CKAN instance."`. The `ckan.site_intro_paragraph` is not defined. For background image  `hero.png` is used with the default location `https://github.com/tum-gis/ckanext-grouphierarchy-sddi/blob/main/ckanext/grouphierarchy/public/base/images/hero.jpg`
+By default, the intro text is defined as `ckan.site_intro_text="This is the intro to my CKAN instance."`. The `ckan.site_intro_paragraph` is not defined.
+For background image  `hero.png` is used with the default location `https://github.com/tum-gis/ckanext-grouphierarchy-sddi/blob/main/ckanext/grouphierarchy/public/base/images/hero.jpg`
 In the following image is possible to see the main page of one running instance with default settings.
 
 ![image](https://github.com/tum-gis/ckanext-grouphierarchy-sddi/assets/93824048/801a2685-9398-4f13-b881-a14a2eb25bb5)
