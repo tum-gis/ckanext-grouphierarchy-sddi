@@ -189,36 +189,40 @@ The values which have to be filled in have the following interpretation:
 
 The `init_data.json` is loaded at first initialization of a fresh instance. If is required to change values defined in `init_data.json` the "old" values should be first removed from the database.
 
-### Main Page Personalisation
+### Main Page Personalization
 
-The personalization of the SDDI CKAN catalog can be done either via variables or later in the running instance .
-1. Personalisation via variables:
+The personalization of the SDDI CKAN catalog can be done either via variables or later in the running instance.
 
-   * The configuration which are enabling personalization should be added in the `production.ini`. For example:
-       ```
-       ckan.site_intro_paragraph = "Here is example for Intro Paragraph"
-       ckan.background_image = ../base/images/hero.jpg
-       ckan.site_intro_text = "Here is example for Intro Text."
+#### Personalisation via variables:
+
+The configuration which are enabling personalization should be added in the `production.ini`. For example:
+
+```
+ckan.site_intro_paragraph = "Here is example for Intro Paragraph"
+ckan.background_image = ../base/images/hero.jpg
+ckan.site_intro_text = "Here is example for Intro Text."
+```
 
 With the `ckan.site_intro_paragraph` is possible to define intro paragraph text on the main page, `ckan.background_image` is defining the background image on the main page, `ckan.site_intro_text` is defining the intro text on the main page.
 
 ![variables](https://github.com/tum-gis/ckanext-grouphierarchy-sddi/assets/93824048/4c309aa3-dd0d-4bdd-9b86-bf80ca916ce1)
 
-- If the configuration via variables is going to be used, the `ckan.background_image` can be defined ether as a path to the image or as URL.
+If the configuration via variables is going to be used, the `ckan.background_image` can be defined ether as a path to the image or as URL.
 
-1. Personalisation in the running instance:
+#### Personalisation in the running instance
 
-   * Only user with `Admin` rights can change and apply perionalization settings.
-   This settings are possible to find in the `config` tab of `Systemadmin settings` (As shown in the following image)
+Only user with `admin` rights can change and apply perionalization settings.
+This settings are possible to find in the `config` tab of `Systemadmin settings` (As shown in the following image)
 
-    ![Personalisation](https://github.com/tum-gis/ckanext-grouphierarchy-sddi/assets/93824048/1df24bd5-a66d-4fd7-8195-6abcf0cf98d7)
+![Personalisation](https://github.com/tum-gis/ckanext-grouphierarchy-sddi/assets/93824048/1df24bd5-a66d-4fd7-8195-6abcf0cf98d7)
 
-    As shown on the image, in In `config` tab is possible to change the Intro text on main page of your running instance (`Intro Text`), Paragraph under intro text on main page (`Intro Paragraph`) and to add or upload the background image in the main page (`Background image`).
-    If the (`Background image`) is not defined (as in this example), it will be used the `hero.jpg` image (`ckanext-grouphierarchy-sddi/ckanext/grouphierarchy/public/base/images/hero.jpg`).
+As shown on the image, in In `config` tab is possible to change the Intro text on main page of your running instance (`Intro Text`), Paragraph under intro text on main page (`Intro Paragraph`) and to add or upload the background image in the main page (`Background image`).
+If the (`Background image`) is not defined (as in this example), it will be used the `hero.jpg` image (`ckanext-grouphierarchy-sddi/ckanext/grouphierarchy/public/base/images/hero.jpg`).
 
-    By default, the intro text is defined as `ckan.site_intro_text="This is the intro to my CKAN instance."`. The `ckan.site_intro_paragraph` is not defined. For background image  `hero.png` is used with the default location `https://github.com/tum-gis/ckanext-grouphierarchy-sddi/blob/main/ckanext/grouphierarchy/public/base/images/hero.jpg`
-    In the following image is possible to see the main page of one running instance with default settings
-    ![image](https://github.com/tum-gis/ckanext-grouphierarchy-sddi/assets/93824048/801a2685-9398-4f13-b881-a14a2eb25bb5)
+By default, the intro text is defined as `ckan.site_intro_text="This is the intro to my CKAN instance."`. The `ckan.site_intro_paragraph` is not defined. For background image  `hero.png` is used with the default location `https://github.com/tum-gis/ckanext-grouphierarchy-sddi/blob/main/ckanext/grouphierarchy/public/base/images/hero.jpg`
+In the following image is possible to see the main page of one running instance with default settings.
+
+![image](https://github.com/tum-gis/ckanext-grouphierarchy-sddi/assets/93824048/801a2685-9398-4f13-b881-a14a2eb25bb5)
 
 ### Compatibility
 
@@ -241,6 +245,6 @@ should come before form_group
 ckan.plugins = stats text_view recline_view ... display_group
 ```
 
-## Copyright & Licence
+## Copyright & License
 
 This module is Crown Copyright 2013 and openly licensed with AGPLv3 - see LICENSE file.
