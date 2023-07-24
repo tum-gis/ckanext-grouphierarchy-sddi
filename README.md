@@ -46,6 +46,8 @@ For example, you may add next field:
 }
 ```
 
+New users are added automatically to the parent groups, which allows them to create datasets linked to these groups. Alls children groups are inherited from the parent groups.
+
 ## Functionality
 
 ### Main Categories and Topics
@@ -196,6 +198,7 @@ The values which have to be filled in have the following interpretation:
 
 The `init_data.json` is loaded at first initialization of a fresh instance. If is required to change values defined in `init_data.json` the "old" values should be first removed from the database.
 
+
 ### Main Page Personalization
 
 The personalization of the SDDI CKAN catalog can be done either via variables or later in the running instance.
@@ -231,6 +234,23 @@ For background image  `hero.png` is used with the default location `https://gith
 In the following image is possible to see the main page of one running instance with default settings.
 
 ![image](https://github.com/tum-gis/ckanext-grouphierarchy-sddi/assets/93824048/801a2685-9398-4f13-b881-a14a2eb25bb5)
+
+### Personalization of the license list
+
+The personalised SDDI licences list is by default located here: `ckanext-grouphierarchy-sddi/ckanext/grouphierarchy
+/licenses_SDDI.json`. 
+
+By default CKAN will use list of licenses avaliable [here](https://licenses.opendefinition.org/licenses/groups/ckan.json). 
+
+To add personalised file to your CKAN instance `licenses_group_url` must be defined in production.ini file.
+
+Example:
+
+```
+licenses_group_url = file:///path/to/my/local/json-list-of-licenses.json
+licenses_group_url = http://licenses.opendefinition.org/licenses/groups/od.json
+```
+More informations about [Internationalisation Settings](https://docs.ckan.org/en/2.9/maintaining/configuration.html#internationalisation-settings) and `licenses_group_url` variable is possible to find in [official CKAN documentation](https://docs.ckan.org/en/2.9/maintaining/configuration.html#licenses-group-url).
 
 ### Compatibility
 
