@@ -1,6 +1,6 @@
 # ckanext-grouphierarchy
 ## Overview
-This extension based on the [ckanext-hierarchy](https://github.com/ckan/ckanext-hierarchy) extension.
+This extension is based on the [ckanext-hierarchy](https://github.com/ckan/ckanext-hierarchy) extension.
 The `ckanext-grouphierarchy-sddi` extension **requires** [ckanext-hierarchy](https://github.com/ckan/ckanext-hierarchy) extension. The `ckanext-grouphierarchy-sddi` extension is tested with v1.2.0 of the [ckanext-hierarchy](https://github.com/ckan/ckanext-hierarchy) extension.
 
 The `ckanext-grouphierarchy` provides a new field on the group edit form to select a parent group. This new hierarchical arrangement of groups is displayed
@@ -274,5 +274,6 @@ ckan.plugins = stats text_view recline_view ... display_group
 ```
 
 ## Copyright & License
-
 This module is Crown Copyright 2013 and openly licensed with AGPLv3 - see LICENSE file.
+
+The `ckanext-grouphierarchy-sddi` extension is based on the [ckanext-hierarchy](https://github.com/ckan/ckanext-hierarchy) extension which is openly licensed with AGPLv3 and the Copyright belongs to commit authors.
