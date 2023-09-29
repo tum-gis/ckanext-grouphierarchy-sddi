@@ -90,6 +90,8 @@ The `init_data.json` file is by default located in `ckanext-grouphierarchy-sddi/
 By default, there are 9 main categories, 16 topics and 18 Organizations. In the following `.json` file you can see default values:
 `https://github.com/tum-gis/ckanext-grouphierarchy-sddi/blob/main/ckanext/grouphierarchy/init_data.json`.
 
+The default 9 main categories and 16 topics are mandatory for SDDI and are the result of [long research](https://www.asg.ed.tum.de/en/gis/projects/smart-district-data-infrastructure/). They should not be changed when the catalog is used in SDDI context. Organisations can be modified. The default organizations defined in the file `init_data.json` are predefined within the [TwinBy project](https://twinby.bayern/de/startseite).
+
 The file is possible to define in `production.ini` as a variable:
 
 ```text
