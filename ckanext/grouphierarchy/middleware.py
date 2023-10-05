@@ -46,4 +46,4 @@ def ckanext_before_request():
                 context, dict(user_dict, last_attempt_time=last_attempt_time)
             )
         else:
-            return tk.abort(404)
+            return tk.abort(404, “User not found”)
