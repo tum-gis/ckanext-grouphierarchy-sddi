@@ -28,16 +28,19 @@ def ckanext_before_request():
         id = request.form.get("user")
         site_user = tk.get_action("get_site_user")({"ignore_auth": True}, {})
         context = {"user": site_user["name"]}
+        data_dict = {"id": id}
 
         if "@" in id:
-            data_dict = {"email": id}
-        else:
-            data_dict = {"id": id}
+            user_list = tk.get_action(u'user_list')(context, {
+                u'email': id, "all_fields": False
+            })
+            if len(user_list) == 1:
+                data_dict = {"id": user_list[0]}
 
-        user_dict = tk.get_action("user_show")(
-            context, dict(data_dict, include_plugin_extras=True)
-        )
-        if user_dict:
+        try:
+            user_dict = tk.get_action("user_show")(
+                context, dict(data_dict, include_plugin_extras=True)
+            )
             if user_cannot_send_reset(user_dict["plugin_extras"]):
                 return tk.abort(429)
 
@@ -45,5 +48,5 @@ def ckanext_before_request():
             tk.get_action("user_update")(
                 context, dict(user_dict, last_attempt_time=last_attempt_time)
             )
-        else:
-            return tk.abort(404, "User not found")
+        except tk.ObjectNotFound:
+            tk.abort(404, tk._("User not found"))
