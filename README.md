@@ -254,6 +254,9 @@ licenses_group_url = http://licenses.opendefinition.org/licenses/groups/od.json
 ```
 More informations about [Internationalisation Settings](https://docs.ckan.org/en/2.9/maintaining/configuration.html#internationalisation-settings) and `licenses_group_url` variable is possible to find in [official CKAN documentation](https://docs.ckan.org/en/2.9/maintaining/configuration.html#licenses-group-url).
 
+### Reducing the number of emails sent for the "Forgot your password?" function
+With the `ckanext.sddi.last_attempt_time_interval`funcion the number of emails sent for the "Forgot your password?" function is reduced. By default it is set on [60 seconds](https://github.com/tum-gis/ckanext-grouphierarchy-sddi/blob/pentest/ckanext/grouphierarchy/middleware.py#L10).
+
 ### Compatibility
 
 This extension has been tested with CKAN v2.8.0, CKAN v2.9.0 or later.
