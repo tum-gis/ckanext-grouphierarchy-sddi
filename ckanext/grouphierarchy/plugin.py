@@ -38,6 +38,18 @@ class HierarchySDDIDisplay(p.SingletonPlugin):
             "user_update": action.user_update,
         }
 
+    def update_config_schema(self, schema):
+        ignore_missing = p.toolkit.get_validator(u'ignore_missing')
+        unicode_safe = p.toolkit.get_validator(u'unicode_safe')
+
+        schema.update({
+            u'ckan.site_intro_paragraph': [ignore_missing, unicode_safe],
+            u'ckan.background_image': [ignore_missing, unicode_safe],
+            u'image_upload': [ignore_missing, unicode_safe],
+            u'clear_image_upload': [ignore_missing, unicode_safe],
+        })
+        return schema
+        
     # ITemplateHelpers
 
     def get_helpers(self):
