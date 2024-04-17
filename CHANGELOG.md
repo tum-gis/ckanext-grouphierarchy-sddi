@@ -6,6 +6,13 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 For releases `< 1.0.0` minor version steps may indicate breaking changes too.
 
+## [1.1.4] - 2024-04-17
+### Removed
+Removed "Remember me" button on the login page mentioned [here](https://github.com/tum-gis/ckan-docker/pull/40)
+### Fixed
+- Fixing the missing variables for personalization of the main page
+- Repair the view of the dataset added by the organization on the main page
+
 ## [1.1.3] - 2023-10-13
 ### Added
 Reducing the number of emails sent for the "Forgot your password?" function
@@ -80,6 +87,7 @@ This Release of the CKAN extension is intended to be used in combination with th
 ### Known issues
 
 [Unreleased]: https://github.com/tum-gis/ckanext-grouphierarchy-sddi/compare/0.0.5...HEAD
+[1.1.4]: https://github.com/tum-gis/ckanext-grouphierarchy-sddi/compare/1.1.3...1.1.4
 [1.1.3]: https://github.com/tum-gis/ckanext-grouphierarchy-sddi/compare/1.1.2...1.1.3
 [1.1.2]: https://github.com/tum-gis/ckanext-grouphierarchy-sddi/compare/1.1.1...1.1.2
 [1.1.1]: https://github.com/tum-gis/ckanext-grouphierarchy-sddi/compare/1.1.0...1.1.1
