@@ -6,6 +6,7 @@ from ckanext.grouphierarchy.logic import action
 from ckanext.grouphierarchy import helpers
 from ckanext.grouphierarchy import middleware
 
+tk = p.toolkit
 
 log = logging.getLogger(__name__)
 
@@ -20,6 +21,7 @@ class HierarchySDDIDisplay(p.SingletonPlugin):
     p.implements(p.IPackageController, inherit=True)
     p.implements(p.IMiddleware, inherit=True)
     p.implements(p.IClick)
+    p.implements(p.IFacets, inherit=True)
 
     # IConfigurer
 
@@ -72,3 +74,30 @@ class HierarchySDDIDisplay(p.SingletonPlugin):
     def make_middleware(self, app, config):
         app.before_request(middleware.ckanext_before_request)
         return app
+
+    # IFacets
+
+    def dataset_facets(self, facets_dict, package_type):
+        # Get Main and Topics group
+        del facets_dict['groups']
+        facets_dict['main'] = tk._('Main Categories')
+        facets_dict['topics'] = tk._('Topics')
+
+        return facets_dict
+
+    # IPackageController
+
+    def before_index(self, pkg_dict):
+        # Get the group hierarchy
+        groups = pkg_dict.get("groups", [])
+        if not groups:
+            return pkg_dict
+        for group in groups:
+            group_dict = tk.get_action("group_show")({}, {"id": group})
+            groups_data = group_dict.get("groups", [])
+            if groups_data[0]["name"] == "main-categories":
+                pkg_dict["main"] = group
+            else:
+                pkg_dict["topics"] = group
+
+        return pkg_dict
