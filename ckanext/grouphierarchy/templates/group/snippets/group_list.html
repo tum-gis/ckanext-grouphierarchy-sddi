@@ -28,7 +28,7 @@ Example:
       </h2>
   </center>
 
-  <ul class="media-grid" data-module="media-grid">
+  <ul class="media-grid" data-bs-module="media-grid">
     {% for group in h.get_allowable_children_groups(node.name)  %}
     {% set image_url = h.get_group_image(group.id) %}
     {% snippet "group/snippets/group_tree.html", group=group, image_url=image_url, position=loop.index %}
